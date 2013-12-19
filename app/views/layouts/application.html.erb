@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Men's Social Network Survey</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <style>
+    .field_with_errors {
+       border:2px solid;
+       border-color: red;
+    }
+    table {
+      cellpadding: 3px;
+      cellspacing: 50px;
+      border-collapse:collapse;
+    }
+  </style>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

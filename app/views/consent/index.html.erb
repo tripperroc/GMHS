@@ -1,0 +1,64 @@
+<div style="margin-left: 3em; margin-right: 3em;">
+
+  <h1>Welcome!</h1>
+
+  <p>
+   By participating in this research study you can make an important contribution to gay and bisexual men's health and earn five dollars at Amazon.com. At the end of the survey you will be able to invite up to three of your friends to also participate. You will earn $5 for every one of these friends who completes the survey.  This online survey is being conducted by researchers from the University of Rochester, the Rochester Institute of Technology and Drexel University. This study is intended to show that online social networks such as Facebook can be used to understand the health of gay and bisexual men. We estimate that approximately 900 people will complete this survey which should take five to ten minutes of your time. 
+  </p>
+
+  <p> Your recruit code is: <%= @recruitee_coupon %> </p>
+
+  <%= form_for @rsc, :url => { :controller => 'consent', :action => 'info_letter' } do |f| %>
+
+    <hr />
+
+    <p>
+      <%= f.radio_button :eighteen_or_older, true, :onclick => "$('#sexuality_questions').show();" %> Yes
+      <%= f.radio_button :eighteen_or_older, false, :onclick => "$('#sexuality_questions').hide();" %> No
+
+      <span style="margin-left: 2em;"></span>
+
+      <%= label_tag 'eighteen_or_older', 'I am 18 years of age or older' %>
+    </p>
+    <div id="sexuality_questions" style="display: none; margin-left: 2em;">
+      <p>
+        <%= label_tag 'gender', 'Do you consider yourself to be' %>
+        <br />
+        <%= f.radio_button :gender, "Male"%>
+       <%= label_tag 'gender_male', 'Male' %>
+        <br />
+        <%= f.radio_button :gender, "Female"%>
+        <%= label_tag 'gender_female', 'Female' %>
+        <br />
+        <%= f.radio_button :gender, "Male-to-Female"%>
+        <%= label_tag 'gender_mtf', ' Transgender, male-to-female' %>
+        <br />
+        <%= f.radio_button :gender, "Female-to-Male"%>
+        <%= label_tag 'gender_ftm', ' Transgender, female-to-male' %>
+        <br />
+        <%= f.radio_button :gender, "Other"%>
+        <%= label_tag 'gender_other', 'Other' %>
+      </p>
+      <p>
+        Do you consider yourself to be
+        <br />
+       <%= f.radio_button :orientation, "Heterosexual"%>
+       <%= label_tag 'heterosexual', 'Heterosexual (straight)' %>
+        <br />
+        <%= f.radio_button :orientation, "Gay"%>
+        <%= label_tag 'gay', 'Gay or lesbian' %>
+        <br />
+        <%= f.radio_button :orientation, "Bisexual"%>
+        <%= label_tag 'bisexual', 'Bisexual' %>
+        <br />
+       <%= f.radio_button :orientation, "Not-sure"%>
+        <%= label_tag 'Other', "Not sure" %>
+      </p>
+    </div>
+    <p style="text-align: center;">
+      <%= submit_tag "Check eligibility" %>
+    </p>
+
+  <% end %>
+  
+</div>

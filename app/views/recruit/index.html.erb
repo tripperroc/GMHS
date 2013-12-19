@@ -1,0 +1,80 @@
+<div id="fb-root"></div>
+<style>
+a:link { color:blue; }
+
+a:visited { color:blue; }
+
+a:hover { color:blue; }
+
+a:active { color:blue; }
+
+</style>
+ <h1>Thank you!</h1>
+
+<p>
+ Thank you for completing the survey! You have now earned $5. You told
+ us you have <%= @gay_facebook_friends %> Facebook friends who are adult gay males. We will give
+ you $5 for every one of these friends who you recruit and who
+ completes the survey (up to three friends for a total of $15).  You
+ can recruit friends through: 1) <b style="color:black;">Facebook
+ Recruitment</b> or 2) <b style="color:black;">Email  Recruitment</b>.
+</p>
+<ol>
+<li><b style="color:black;">Facebook Recruitment</b>.  To recruit a friend through Facebook,
+      click on the link below
+<p>
+ 
+  <a href="#" id = "fb-invite">Recruit friends through Facebook</a>
+
+</p>
+</li>
+<li><b style="color:black;">Email Recruitment.</b> To recruit a friend through email we suggest you copy the text below and send emails separately to friends you think might be eligible.
+
+<blockquote>
+  <p> I just took a survey that will help us better understand of the health concerns of gay men.  I earned $5 for completing the survey and will earn $5 for the first three friends of mine who complete it. You will earn $5 in Amazon credit if you take the survey and you may also have the opportunity to earn additional credit by recruiting others to the survey. If you would like to complete the survey please go to:</p>
+ <p>
+<a href ="<%= @invitation_url %>"><%=@invitation_url %></a>
+</p>
+
+
+<p>
+You can find out additional information about the survey by going to: 
+</p>
+<p>
+<a  href="http://www.lgbtdata.com/respondent-driven-sampling-in-social-computing-systems-project-redssocs.html">http://www.lgbtdata.com/respondent-driven-sampling-in-social-computing-systems-project-redssocs.html</a>
+</p>
+<p>
+Thank you!
+</p>
+</blockquote>
+
+<script>
+
+
+          //Get a reference to the link on the page
+          // with an id of "mylink"
+          var a = document.getElementById("fb-invite");
+
+          //Set code to run when the link is clicked
+          // by assigning a function to "onclick"
+          a.onclick = function() {
+
+            // Your code here...
+            FB.ui({
+                   //method: 'send',     
+                    //link: "<%= url_for :controller => 'recruit', :action => 'invitation', :only_path => false %>" 
+                   method: 'apprequests',     
+                   message: 'Take a health survey for gay men'
+	    });
+            //If you don't want the link to actually 
+            // redirect the browser to another page,
+            // "google.com" in our example here, then
+            // return false at the end of this block.
+            // Note that this also prevents event bubbling,
+            // which is probably what we want here, but won't 
+            // always be the case.
+            return false;
+         }
+
+</script>
+
