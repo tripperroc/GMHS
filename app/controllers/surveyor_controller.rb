@@ -24,7 +24,7 @@ class SurveyorController < ApplicationController
       ### Initialize a response set after first getting the facebook id of the user.
       
 
-    #  authenticate_with_fb_graph
+      authenticate_with_fb_graph
       facebook_response = FacebookResponse.find_or_create_by(facebook_user_id: facebook_user.id)
       @response = Response.find_or_create_by(facebook_response_id: facebook_response.id)
       facebook_response.facebook_user_id = facebook_user.id
@@ -66,7 +66,7 @@ class SurveyorController < ApplicationController
       facebook_response.save()
       
       answers
-      #save_relationships
+      save_relationships
 
 
   #    redirect_to :controller => "estimate", :action => "index"
