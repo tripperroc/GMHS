@@ -72,7 +72,7 @@
 
 <li>
 <div class="question">  What is the highest grade or year of school that you completed? </div>
-<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:highest_graph_level_completed]) %></div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:highest_grade_level_completed]) %></div>
 <div class="answer">
 <%= render( :partial => 'radiobuttons', :object => @schooling,:locals=> {:f => f, :name => :highest_grade_level_completed}) %>
 </div
