@@ -15,7 +15,7 @@ class Response < ActiveRecord::Base
 
 
   
-  validates :age, :birth_sex, presence: true, on: :update
-  #validates :age, :birth_sex, :marital_status, :latino, :num_children, :highest_grade_level_completed, :income, :health_care_provider, :have_health_plan, :general_health, :height_feet, :height_inches, :weight, :one_drink, :smoked_last_year, :violence_victim_ever, :sex_feelings, :sex_who, :sex_category, :discrimination_insurance, :discrimination_how_treated, :discrimination_public, :discrimination_job, :discrimination_bullied, :ever_aids, :ever_suicidal, :frequency_facebook, :frequency_twitter, :frequency_google_plus, :frequency_myspace, :frequency_linkedin, :frequency_other, :ever_tumblr, :ever_trevorspace, :ever_grindr, :ever_scruff, :ever_jackd,  :ever_hornet,  :ever_yelp,  :ever_foursquare, :ever_flickr,  :ever_youtube,  :ever_pinterest, :ever_instagram, :ever_other, presence: true, on: :update
+  #validates :age, :birth_sex, presence: true, on: :update
+  validates :age, :birth_sex, :marital_status, :latino, :num_children, :highest_grade_level_completed, :income, :health_care_provider, :have_health_plan, :general_health, :height_feet, :height_inches, :weight, :one_drink, :smoked_last_year, :violence_victim_ever, :sex_feelings, :sex_who, :sex_category, :discrimination_insurance, :discrimination_how_treated, :discrimination_public, :discrimination_job, :discrimination_bullied, :ever_aids, :ever_suicidal, :frequency_facebook, :frequency_twitter, :frequency_google_plus, :frequency_myspace, :frequency_linkedin, :frequency_other, :ever_tumblr, :ever_trevorspace, :ever_grindr, :ever_scruff, :ever_jackd,  :ever_hornet,  :ever_yelp,  :ever_foursquare, :ever_flickr,  :ever_youtube,  :ever_pinterest, :ever_instagram, :ever_other, presence: true, on: :update
  
 end
