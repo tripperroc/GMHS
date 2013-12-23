@@ -24,49 +24,15 @@ class SurveyorController < ApplicationController
       ### Initialize a response set after first getting the facebook id of the user.
       
 
-      authenticate_with_fb_graph
-      facebook_response = FacebookResponse.find_or_create_by(facebook_user_id: facebook_user.id)
-      @response = Response.find_or_create_by(facebook_response_id: facebook_response.id)
-      facebook_response.facebook_user_id = facebook_user.id
-      facebook_response.email_address = params[:user][:address]
-      session[:email_address]  = params[:user][:address]
+      @response = Response.find_or_create_by(facebook_response_id: params[:id])
       
+      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      logger.debug params
+      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
-      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-      logger.debug Response.where(recruiter_coupon: session[:recruitee_coupon]).count
-      logger.debug session[:recruitee_coupon]
-      logger.debug @response.recruiter_coupon
-      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-      logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-      if (@response.recruiter_coupon)
-        logger.debug "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
-        logger.debug "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
-        session[:recruiter_coupon] = facebook_response.recruiter_coupon
-        session[:recruitee_coupon] = facbook_response.recruitee_coupon
-      elsif ((session[:recruitee_coupon] != '585' && FacebookResponse.where(recruitee_coupon: session[:recruitee_coupon]).count > 2) || (session[:recruitee_coupon] == '585' && FacebookResponse.where(recruitee_coupon: session[:recruitee_coupon]).count > 9) )
-        logger.debug "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
-        logger.debug "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
-        redirect_to :controller => "consent", :action => "expired"
-        return
-      elsif ((!session[:recruitee_coupon]) || (session[:recruitee_coupon] != '814' && session[:recruitee_coupon] != '585' && FacebookResponse.where(recruiter_coupon: session[:recruitee_coupon]).count == 0))
-        logger.debug "333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333"
-        logger.debug "333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333"
-        redirect_to :controller => "consent", :action => "invalid"
-        return
-      else
-        logger.debug "444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444"
-        logger.debug "444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444"
-        recruiter_coupon = SecureRandom.hex(16)
-        session[:recruiter_coupon] = recruiter_coupon
-        facebook_response.recruiter_coupon = recruiter_coupon
-        @response.recruitee_coupon = session[:recruitee_coupon]
-      end
-      # @facebook_response.email_address = session[:email_address]
-      facebook_response.save()
-      
       answers
-      save_relationships
 
 
   #    redirect_to :controller => "estimate", :action => "index"
@@ -82,6 +48,18 @@ class SurveyorController < ApplicationController
      render :create 
    end
   end 
+
+   def any_errors
+     if @response.errors.any?
+        logger.debug "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+        logger.debug "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+
+       @response.errors.full_messages.each do |msg| 
+          logger.debug msg 
+       end
+     end
+   end
+
   def answers
     @mf = ["Male", "Female"]
 
@@ -111,7 +89,7 @@ class SurveyorController < ApplicationController
                   [:work_yes_absent,"Have a job or business, but absent from work without pay"],
                   [:unemployed_looking,"Unemployed or laid off and looking for work"],
                   [:unemployed_not_looking,"Unemployed or laid off and not looking for work"],
-                  [:unemployed_not_looking,"Unemployed and permanently disabled"],
+                  [:unemployed_disabled,"Unemployed and permanently disabled"],
                   [:retired,"Retired"],
                   [:school_fulltime,"In school, full time"],
                   [:school_parttime,"In school, part time"],
@@ -242,14 +220,4 @@ class SurveyorController < ApplicationController
        [:ever_other,"Other"] ]
    end
 
-   def any_errors
-     if @response.errors.any?
-        logger.debug "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
-        logger.debug "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
-
-       @response.errors.full_messages.each do |msg| 
-          logger.debug msg 
-       end
-     end
-   end
 end

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
@@ -78,7 +79,7 @@ private
       "&access_token=#{facebook_access_token}"
     fetched_page = FbGraph::Page.fetch(graph_page)
     friend_data = fetched_page.raw_attributes['data']
-
+ 
     so_facebook_account_numbers = Array.new
 
     friend_data.each do |friend_fields|
@@ -114,8 +115,9 @@ private
       so.gender ||= significant_other_gender["gender"]
       so.save! if so.changed?
     end
-    session[:total_male_friends] = u.total_male_friends
+    u.total_male_friends
   end
+
 
 
 end

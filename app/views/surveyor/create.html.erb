@@ -1,6 +1,7 @@
 <% if @response.errors.any? %>
-  Whoops! There is some incorrect and/or missing data. Please fix the errors
+<div id ="error_top">  Whoops! There is some incorrect and/or missing data. Please fix the errors
   in the answers below.
+</div>
 <% end %> 
 
 
@@ -25,6 +26,7 @@
 
 <li>
 <div class="question"> What is your current gender identity? (Check all that apply) </div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:gender]) %></div>
 <div class="answer">
 <%= render( :partial => 'checkboxes', :object => @gender, :locals=> {:f => f}) %>
  </div>
@@ -42,6 +44,7 @@
 <li>
 <div class="question"> Please select 1 or more categories to describe
   your race. </div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:ethnicity]) %></div>
 <div class="answer">
 <%= render( :partial => 'checkboxes', :object => @ethnicity, :locals=> {:f => f}) %>
 </div>
@@ -64,6 +67,7 @@
 <li>
 <div class="question">  Which of these statements describe your present situation? (Check
    all that apply)  </div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:employment]) %></div>
 <div class="answer">
 <%= render( :partial => 'checkboxes', :object => @employment, :locals=> {:f => f}) %>
 </div>
@@ -215,6 +219,7 @@
       <br />
       <br /> 
       During the last 12 months, did you use any of these medicines or drugs ON YOUR OWN? Please do not include any over-the-counter medicines or herbal medicines. (Check all that apply)</div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:drugs]) %></div>
 <div class="answer">
 <%= render( :partial => 'checkboxes', :object => @drugs, :locals=> {:f => f}) %>
 </div
@@ -417,7 +422,9 @@
 
 <ul id = "qs_suicide" <% if @response.ever_suicidal != "Yes"%>style="display: none;"<% end %>>
 <li>
-<div class="question">Which of the following best describes your experience? (Please check all that apply)</div>
+<div class="question">Which of the following best describes your
+  experience? (Please check all that apply)</div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:suicidal]) %></div>
 <div class="answer">
 <%= render( :partial => 'checkboxes', :object => @suicidal, :locals=> {:f => f}) %>
 </div

@@ -59,8 +59,8 @@ class CreateResponses < ActiveRecord::Migration
       t.boolean :inhalents_last_year
       t.boolean :heroin_last_year
       t.boolean :drugs_other_last_year
-      t.boolean :ever_self_harm
-      t.boolean :ever_seriously_ill
+      t.string :ever_self_harm
+      t.string :ever_seriously_ill
       t.string  :violence_victim_ever
       t.integer :violence_age_first
       t.integer :violence_age_most_recent

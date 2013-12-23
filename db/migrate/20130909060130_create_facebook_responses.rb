@@ -9,6 +9,7 @@ class CreateFacebookResponses < ActiveRecord::Migration
       t.string :recruitee_coupon
       t.string :recruiter_coupon
       t.string :email_address
+      t.integer :facebook_male_friends
 
       t.timestamps
     end

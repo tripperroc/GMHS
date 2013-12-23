@@ -49,3 +49,9 @@ gem 'fb_graph'
 
 
 gem 'i18n', github: 'svenfuchs/i18n'
+
+gem 'mysql2'
+
+gem 'delayed_job_active_record'
+
+gem "daemons"

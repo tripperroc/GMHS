@@ -13,8 +13,8 @@
     <hr />
 
     <p>
-      <%= f.radio_button :eighteen_or_older, true, :onclick => "$('#sexuality_questions').show();" %> Yes
-      <%= f.radio_button :eighteen_or_older, false, :onclick => "$('#sexuality_questions').hide();" %> No
+      <%= f.radio_button :eighteen_or_older, true, :onclick => "$('#sexuality_questions').show();$('#submit').show();" %> Yes
+      <%= f.radio_button :eighteen_or_older, false, :onclick => "$('#sexuality_questions').hide();$('#submit').show();" %> No
 
       <span style="margin-left: 2em;"></span>
 
@@ -56,7 +56,7 @@
       </p>
     </div>
     <p style="text-align: center;">
-      <%= submit_tag "Check eligibility" %>
+      <%= submit_tag "Check eligibility", :id => "submit",  :style => "display: none;" %>
     </p>
 
   <% end %>

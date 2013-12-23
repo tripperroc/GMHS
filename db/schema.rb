@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228025915) do
+ActiveRecord::Schema.define(version: 20131228025916) do
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "estimates", force: true do |t|
     t.integer  "response_id"
@@ -41,6 +57,7 @@ ActiveRecord::Schema.define(version: 20131228025915) do
     t.string   "recruitee_coupon"
     t.string   "recruiter_coupon"
     t.string   "email_address"
+    t.integer  "facebook_male_friends"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -133,8 +150,8 @@ ActiveRecord::Schema.define(version: 20131228025915) do
     t.boolean  "inhalents_last_year"
     t.boolean  "heroin_last_year"
     t.boolean  "drugs_other_last_year"
-    t.boolean  "ever_self_harm"
-    t.boolean  "ever_seriously_ill"
+    t.string   "ever_self_harm"
+    t.string   "ever_seriously_ill"
     t.string   "violence_victim_ever"
     t.integer  "violence_age_first"
     t.integer  "violence_age_most_recent"

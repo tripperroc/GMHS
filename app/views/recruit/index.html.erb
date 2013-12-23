@@ -46,6 +46,7 @@ You can find out additional information about the survey by going to:
 <p>
 Thank you!
 </p>
+
 </blockquote>
 
 <script>
@@ -54,7 +55,7 @@ Thank you!
           //Get a reference to the link on the page
           // with an id of "mylink"
           var a = document.getElementById("fb-invite");
-
+          var b;
           //Set code to run when the link is clicked
           // by assigning a function to "onclick"
           a.onclick = function() {
@@ -62,10 +63,18 @@ Thank you!
             // Your code here...
             FB.ui({
                    //method: 'send',     
-                    //link: "<%= url_for :controller => 'recruit', :action => 'invitation', :only_path => false %>" 
+                   // link: "<%= url_for :controller => 'recruit', :action => 'invitation',  :only_path => false %>" 
+                   //link: "<%=@invitation_url %>" 
                    method: 'apprequests',     
                    message: 'Take a health survey for gay men'
-	    });
+	    }, function (response) {
+                 $("#facebook_response").text(response);
+                 response.to.forEach(function(entry) {
+	              console.log(entry);
+                      $.post("<%= url_for action: :loginvitation %>",
+            {"facebook_account_number":  entry, "recruitee_coupon": "<%= @recruitee_coupon %>"});
+                 });
+             });
             //If you don't want the link to actually 
             // redirect the browser to another page,
             // "google.com" in our example here, then
@@ -74,7 +83,7 @@ Thank you!
             // which is probably what we want here, but won't 
             // always be the case.
             return false;
-         }
+         };
 
 </script>
 
