@@ -1,63 +1,80 @@
-<div style="margin-left: 3em; margin-right: 3em;">
+<div style="margin-left: 3em; margin-right: 3em;margin-top:1em">
+  
 
-  <h1>Welcome!</h1>
 
-  <p>
-   By participating in this research study you can make an important contribution to gay and bisexual men's health and earn five dollars at Amazon.com. At the end of the survey you will be able to invite up to three of your friends to also participate. You will earn $5 for every one of these friends who completes the survey.  This online survey is being conducted by researchers from the University of Rochester, the Rochester Institute of Technology and Drexel University. This study is intended to show that online social networks such as Facebook can be used to understand the health of gay and bisexual men. We estimate that approximately 900 people will complete this survey which should take five to ten minutes of your time. 
-  </p>
+<div class = "instructions" style="">
+<b>Welcome!</b> For <b>10 minutes</b> of your time you can <b>earn $5</b> in
+Amazon.com credit and <b>make an important contribution to gay and
+    bisexual men's health</b>. 
+You may also <b>earn up to $15</b> for recruiting friends to take this, a survey by
+researchers from  the University of Rochester, the Rochester Institute
+of Technology, and Drexel University.
 
-  <p> Your recruit code is: <%= @recruitee_coupon %> </p>
+<br />
 
-  <%= form_for @rsc, :url => { :controller => 'consent', :action => 'info_letter' } do |f| %>
+</div>
+  <p style="display: none;"> Your recruit code is: <%= @recruitee_coupon %> </p>
 
-    <hr />
+<%= form_for @rsc, :url => { :controller => 'consent', :action => 'info_letter' }, :html=>{:id=>"eligible"}  do |f| %>
+<p></p>
 
-    <p>
-      <%= f.radio_button :eighteen_or_older, true, :onclick => "$('#sexuality_questions').show();$('#submit').show();" %> Yes
-      <%= f.radio_button :eighteen_or_older, false, :onclick => "$('#sexuality_questions').hide();$('#submit').show();" %> No
-
+    <div id = "age" style="margin-left: 0em;">
+     <%= label_tag 'eighteen_or_older', 'Are you 18 years of age or
+     older?' %>
+     <br />
+      <%= f.radio_button :eighteen_or_older, true, :onclick => "$('#age').hide();$('#gender').show(500);" %> Yes
+      <br />
+      <%= f.radio_button :eighteen_or_older, false, :onclick => "$('#age').hide(); $('#ineligible').show(500);" %> No
       <span style="margin-left: 2em;"></span>
 
-      <%= label_tag 'eighteen_or_older', 'I am 18 years of age or older' %>
-    </p>
-    <div id="sexuality_questions" style="display: none; margin-left: 2em;">
-      <p>
+     </div>
+  <div id = "ineligible" style="display: none;margin-left: 0em; ">
+      Sorry. You are ineligible to take this survey.
+</div>
+    <div id="gender" style="display: none; margin-left: 0em;">
         <%= label_tag 'gender', 'Do you consider yourself to be' %>
         <br />
-        <%= f.radio_button :gender, "Male"%>
+        <%= f.radio_button :gender, "Male", :onclick => "$('#gender').hide();$('#sexuality').show(500);" %>
        <%= label_tag 'gender_male', 'Male' %>
         <br />
-        <%= f.radio_button :gender, "Female"%>
+        <%= f.radio_button :gender, "Female", :onclick => "$('#gender').hide();$('#ineligible').show(500);"%>
         <%= label_tag 'gender_female', 'Female' %>
         <br />
-        <%= f.radio_button :gender, "Male-to-Female"%>
+        <%= f.radio_button :gender, "Male-to-Female", :onclick => "$('#gender').hide();$('#ineligible').show(500);"%>
         <%= label_tag 'gender_mtf', ' Transgender, male-to-female' %>
         <br />
-        <%= f.radio_button :gender, "Female-to-Male"%>
+        <%= f.radio_button :gender, "Female-to-Male", :onclick => "$('#gender').hide();$('#sexuality').show(500);"%>
         <%= label_tag 'gender_ftm', ' Transgender, female-to-male' %>
         <br />
-        <%= f.radio_button :gender, "Other"%>
+        <%= f.radio_button :gender, "Other", :onclick => "$('#gender').hide();$('#ineligible').show(500);"%>
         <%= label_tag 'gender_other', 'Other' %>
-      </p>
-      <p>
+</div>
+    <div id="sexuality" style="display: none; margin-left: 0em;">
         Do you consider yourself to be
         <br />
-       <%= f.radio_button :orientation, "Heterosexual"%>
+       <%= f.radio_button :orientation, "Heterosexual", :onclick => "$('#sexuality').hide();$('#ineligible').show(500);" %>
        <%= label_tag 'heterosexual', 'Heterosexual (straight)' %>
         <br />
-        <%= f.radio_button :orientation, "Gay"%>
-        <%= label_tag 'gay', 'Gay or lesbian' %>
+        <%= f.radio_button :orientation, "Gay", :onclick =>"$('#sexuality').hide();$('#facebook').show(500);"%>
+        <%= label_tag 'gay', 'Gay' %>
         <br />
-        <%= f.radio_button :orientation, "Bisexual"%>
+        <%= f.radio_button :orientation, "Bisexual", :onclick => "$('#sexuality').hide();$('#facebook').show(500);"%>
         <%= label_tag 'bisexual', 'Bisexual' %>
         <br />
-       <%= f.radio_button :orientation, "Not-sure"%>
+       <%= f.radio_button :orientation, "Not-sure", :onclick => "$('#sexuality').hide();$('#ineligible').show(500);" %>
         <%= label_tag 'Other', "Not sure" %>
       </p>
     </div>
-    <p style="text-align: center;">
-      <%= submit_tag "Check eligibility", :id => "submit",  :style => "display: none;" %>
-    </p>
+        <div id = "facebook" style="display: none; margin-left: 0em;">
+     <%= label_tag 'facebook', 'Do you have a Facebook account?' %>
+     <br />
+      <%= f.radio_button :facebook, true, :onclick => "$('#facebook').hide(); $('#eligible').submit();" %> Yes
+      <br />
+      <%= f.radio_button :facebook, false, :onclick => "$('#facebook').hide(); $('#ineligible').show(500);" %> No
+      <span style="margin-left: 2em;"></span>
+
+     </div>
+
 
   <% end %>
   

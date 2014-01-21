@@ -4,8 +4,9 @@ class RecruitController < ApplicationController
 
   def index   
     @invitation_url = url_for :controller => 'recruit', :action => 'invitation', :id => session[:recruiter_coupon]
-    @email = session[:email_address]
+   # @email = session[:email_address]
     estimate = Estimate.find(params[:id])
+    @email = estimate.email_address
     @male_facebook_friends = session[:total_male_friends]
     @recruitee_coupon =  session[:recruiter_coupon]
     @gay_facebook_friends = estimate.facebook_gay_friends

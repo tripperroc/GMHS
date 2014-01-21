@@ -10,5 +10,5 @@ class FacebookResponse < ActiveRecord::Base
   belongs_to :facebook_user
   belongs_to :response_set
 
-  validates :email_address, presence: true, email: true
+  #validates :email_address, presence: true, email: true
 end

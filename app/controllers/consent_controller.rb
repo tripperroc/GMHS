@@ -44,8 +44,6 @@ class ConsentController < ApplicationController
     logger.debug facebook_user
 
     @facebook_response = FacebookResponse.find_or_create_by(facebook_user_id: facebook_user.id)
-    @facebook_response.email_address = params[:facebook_response][:email_address]
-    session[:email_address]  = params[:facebook_response][:email_address]
       
 
     logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -77,7 +75,6 @@ class ConsentController < ApplicationController
       session[:recruiter_coupon] = recruiter_coupon
       @facebook_response.recruiter_coupon = recruiter_coupon
     end
-    # @facebook_response.email_address = session[:email_address]
     logger.debug "-1023984-1023941-203941-2039481-2039481-2039481-2039481-20398"
     logger.debug @facebook_response
     if @facebook_response.save()

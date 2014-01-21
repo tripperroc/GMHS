@@ -1,5 +1,11 @@
 class EstimateController < ApplicationController
   def create
+    @how_recruited = ["Online ad",
+      "email",
+       "phone (voice)",
+       "phone (text)",
+       "Facebook",
+       "Other"]
     @estimate = Estimate.find_or_create_by(response_id: params[:id])
     response = Response.find(params[:id])
     @facebook_response = FacebookResponse.find(response.facebook_response_id)
@@ -8,6 +14,12 @@ class EstimateController < ApplicationController
   end
 
   def update
+    @how_recruited = ["Online ad",
+      "email",
+       "phone (voice)",
+       "phone (text)",
+       "Facebook",
+       "Other"]
     params.require(:estimate).permit!   
     @estimate = Estimate.find(params[:id])
     if @estimate.update(params[:estimate])

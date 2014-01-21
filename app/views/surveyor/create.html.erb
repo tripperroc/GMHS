@@ -1,10 +1,13 @@
 <% if @response.errors.any? %>
-<div id ="error_top">  Whoops! There is some incorrect and/or missing data. Please fix the errors
-  in the answers below.
+<div id ="error_top" class="field_with_errors" style="font-size=14pt;
+  font-weight: bold;width:400px;margin-left:auto;margin-right:auto;margin-top:2em;"> There are some missing or incorrect answers below. LOOK FOR ENTRIES WITH THIS BACKGROUND COLOR. Please fix them and submit again. Thanks!
 </div>
 <% end %> 
 
+<div style="margin-left: 3em; margin-right: 3em;">
 
+<div class="instructions">There are <b>two pages</b> of questions (39 total),
+ some having multiple parts. This is <b>page 1</b>.</div>
  <%= form_for @response, :url => { :action => 'update', :id  =>@response.id} do |f| %>
 
  <ol>
@@ -30,7 +33,6 @@
 <div class="answer">
 <%= render( :partial => 'checkboxes', :object => @gender, :locals=> {:f => f}) %>
  </div>
-</div>
 </li>
 
 <li>
@@ -183,7 +185,6 @@
 
 </ol>
 </div>
-</div>
 </li>
 
 
@@ -207,8 +208,12 @@
 </li>
 
 <li>
-<div class="question">  Now I’d like to ask you about your experiences with medicines and other kinds of drugs that you may have used ON YOUR OWN – that is, either: 
+<div class="question">  Now I’d like to ask you about your experiences
+  with medicines and other kinds of drugs that you may have used ON
+  YOUR OWN – that is, either: 
+   <div style="font-size: .8em;")
       <br />
+     <br />
       <ul>
       <li>WITHOUT a doctor’s prescription;</li>
       <li>In GREATER amounts, MORE OFTEN, or LONGER than prescribed; or</li>
@@ -218,6 +223,7 @@
       or to get high or just to see how they would work
       <br />
       <br /> 
+</div>
       During the last 12 months, did you use any of these medicines or drugs ON YOUR OWN? Please do not include any over-the-counter medicines or herbal medicines. (Check all that apply)</div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:drugs]) %></div>
 <div class="answer">
@@ -300,13 +306,15 @@
 </div>
 </li>
 
-<li>The next few questions are about how your parents or caregivers
+<br />
+<div class="question"> The next few questions are about how your parents or caregivers
       treated you while you were growing up, that is, BEFORE you were
       18 years old. By parents or caregivers, I mean your mother, father,
       stepmother, stepfather, adoptive mother or father, foster parent
       or other adult living in your home. 
+</div>
 <br />
-<br />
+<li>
 <div class="question">BEFORE you were 18 years old How often did a parent or other adult living in your home swear at you, insult you or say hurtful things? </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:care_swear]) %></div>
 <div class="answer">
@@ -330,11 +338,10 @@
 </div>
 </li>
 
-<li>
-<div class="question">And now some questions about your health and sexual practices.
-      <br />
-      <br /> 
-      People are different in their sexual attraction to other people. Which category best describes your feelings?</div>
+
+<div class="question">And now some questions about your health and sexual practices.</div>
+      
+<li><div class="question"> People are different in their sexual attraction to other people. Which category best describes your feelings?</div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:sex_feelings]) %></div>
 <div class="answer">
 <%= render( :partial => 'radiobuttons', :object => @sex_feelings, :locals=> {:f => f, :name => :sex_feelings}) %>
@@ -358,11 +365,12 @@
 </li>
 
 
-<li>
+
 <div class="question">Now I’d like to know about how often you have experienced discrimination, been prevented from doing something, or been hassled or made to feel 
-      inferior in any of the following situations because you were assumed to be gay, lesbian or bisexual. 
+      inferior in any of the following situations because you were assumed to be gay, lesbian or bisexual. </div>
       <br />
-      <br /> During the last 12 months, about how often did you experience discrimination in your ability to obtain health care or health insurance coverage 
+<li>
+<div class="question"> During the last 12 months, about how often did you experience discrimination in your ability to obtain health care or health insurance coverage 
         because you were assumed to be gay, lesbian or bisexual?</div>
 <div class="answer">
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:discrimination_insurance]) %></div>
@@ -403,10 +411,10 @@
 </li>
 
 
-<li>
-<div class="question">And now a few questions about your health.
-      <br />
-      <br />
+<div class="question"> And now a few questions about your health.</div>
+     
+  <li>
+<div class="question">
       Did you test positive for HIV, the virus that causes AIDS? </div>
 <div class="answer">
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:ever_aids]) %></div>
@@ -427,7 +435,7 @@
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:suicidal]) %></div>
 <div class="answer">
 <%= render( :partial => 'checkboxes', :object => @suicidal, :locals=> {:f => f}) %>
-</div
+</div>
 </li>
 </ul>
 </div>
@@ -446,19 +454,9 @@
 </div>
 </li>
 
-<li>
-<div class = "question">Do you check any of the following social networking sites?</div>
-<div class = "answer">
-<table>
-<tr>
-<tr><td></td><%= render( :partial => 'header', :collection => @yesno, :locals=> {:f => f}) %></tr>
-<%= render( :partial => 'radiotable', :collection => @sns_other, :locals=> {:f => f, :cols=>@yesno}) %>
-</tr>
-</table>
-</div>
-</li>
 
 </ol>
 <%= f.submit %>
 <% end %>
 
+</div>

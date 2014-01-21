@@ -1,76 +1,51 @@
-<% if @facebook_response.errors.any? %>
-<div id ="error_top">  Whoops! There is some incorrect and/or missing data. Please fix the errors
-  in the answers below.
+
+<div style="margin-left: 3em; margin-right: 3em;margin-bottom:3em;">
+
+  <div  style="margin-top: 1em;">
+    You are <b>eligible</b> to take the survey! <b>Please read</b> the following information and <b>indicate below</b> whether
+    or not you agree to participate. 
+  </div>
+
+  <div>
+  <%= render "info_letter_content" %>
 </div>
-<% end %> 
-
-<div style="margin-left: 5em; margin-right: 5em;">
-
-  <div style="margin-top: 1em; font-size: 1.2em;">
-    You are eligible to take this survey!
-    Please read the information in the box below and indicate whether
-    or not
-    you agree to participate. 
-  </div>
-
-  <div style="margin-top: 1em; margin-bottom: 1em;">
-    <iframe src="<%= url_for(:action => "info_letter_content") %>" 
-            style="width: 100%; height: 300px;"></iframe>
-  </div>
 
   <div style="width: 100%;">
+    <span style="float: right;">
+      <%= link_to "Download a Copy of this Letter", root_url + "info_letter.pdf" %>
+    </span>
+
     <span style="float: left;">
  <%= form_for @facebook_response, :url => {:action => 'update'}  do |f| %>
  <div id="facebook_login_button" style="margin-top: 1em;">
 
-<div class="errors"><%= render(:partial => 'shared/errors', :object => @facebook_response.errors[:email_address]) %></div>
 
- <%= f.text_field(:email_address, :value => "Enter your email address", :id => "email") %> 
+<div>Do you agree? If so, <b>please click the button below</b>. This will add a Facebook application <%= link_to "(Why?)", root_url +  "consent/facebook_login?commit=I+Agree" %>,
+which you may remove after you finish the survey.</div>
+
+<p>
        <fb:login-button 
         show-faces="false"
         scope="user_relationships,user_relationship_details,friends_relationships,friends_relationship_details"
         onlogin="$('#new_facebook_response').submit()">
         I agree to participate
       </fb:login-button>
+</p>
 
-  </div>
+
+<p>
+If you do <b>not</b> wish to participate, please close this
+window. <b>Thank you</b> for your consideration!
+</p>
+ 
 
   <% end %>
-<p>
-       <%= link_to " (Why do we need Facebook?)", root_url +  "consent/facebook_login?commit=I+Agree" %>
-<br/>
-or <br/>
-    <%= link_to "I do not wish to participate", root_url +
-	"consent/did_not_consent?commit=Cancel" %>
-</p>
-    </span>
 
-    <span style="float: right;">
-      <%= link_to "Download a Copy of this Letter", root_url + "info_letter.pdf" %>
-    </span>
+
+
   </div>
 
  
 </div>
 
 
-<script>
-
-
-          //Get a reference to the link on the page
-          // with an id of "mylink"
-          var a = document.getElementById("email");
-          a.color = "#888";
-          //Set code to run when the link is clicked
-          // by assigning a function to "onclick"
-          a.onclick = function() {
-
-            if (this.value == "Enter your email address") {
-               // Your code here...
-               this.value = "";
-            }
-            this.color = "black";
-
-         }
-
-</script>

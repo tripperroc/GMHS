@@ -96,19 +96,18 @@ class CreateResponses < ActiveRecord::Migration
       t.string  :frequency_myspace
       t.string  :frequency_linkedin
       t.string  :frequency_other
-      t.string  :ever_tumblr
-      t.string  :ever_trevorspace
-      t.string  :ever_grindr
-      t.string  :ever_scruff
-      t.string  :ever_jackd
-      t.string  :ever_hornet
-      t.string  :ever_yelp
-      t.string  :ever_foursquare
-      t.string  :ever_flickr
-      t.string  :ever_youtube
-      t.string  :ever_pinterest
-      t.string  :ever_instagram
-      t.string  :ever_other
+      t.string  :frequency_tumblr
+      t.string  :frequency_trevorspace
+      t.string  :frequency_grindr
+      t.string  :frequency_scruff
+      t.string  :frequency_jackd
+      t.string  :frequency_hornet
+      t.string  :frequency_yelp
+      t.string  :frequency_foursquare
+      t.string  :frequency_flickr
+      t.string  :frequency_youtube
+      t.string  :frequency_pinterest
+      t.string  :frequency_instagram
       t.timestamps
     end
   end

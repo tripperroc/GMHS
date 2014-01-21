@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Men's Social Network Survey</title>
+  <title>Gay Men's Health Survey</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+
+  <%= stylesheet_link_tag    "facebook", :media => "all" %>
+
   <style>
     .field_with_errors {
-       background-color: pink;
+       border:2px solid;
+       background-color: #f9d0fa;
+       border-color: #f9d0fa;
+       color: #000000;
     }
     table {
       cellpadding: 3px;
       cellspacing: 50px;
       border-collapse:collapse;
+     }
+    .question {
+        margin-top: 1.5em;
+        font-size: 1em;
     }
+    .answer {
+        margin-top: .5em;
+        color: #666666;
+    }
+    .instructionsx {
+       color: #666666;
+       background-color:#f0ebfa;
+       padding: 1em 1em 1em 1em;
+    }
+    
   </style>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render "shared/load_facebook_sdk" %>
+<div style=""><%= image_tag("banner.png", :size => "360x60") %></div>
 
 <%= yield %>
 

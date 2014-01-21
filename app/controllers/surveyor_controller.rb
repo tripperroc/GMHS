@@ -203,21 +203,19 @@ class SurveyorController < ApplicationController
      [:frequency_google_plus, "Google+"], 
      [:frequency_myspace, "MySpace"], 
      [:frequency_linkedin, "LinkedIn"],
-     [:frequency_other, "Other"]]
-
-   @sns_other = [[:ever_tumblr, "Tumblr"],
-       [:ever_trevorspace,"TrevorSpace"], 
-       [:ever_grindr,"Grindr"], 
-       [:ever_scruff,"Scruff"],
-       [:ever_jackd,"Jack'd"], 
-       [:ever_hornet,"Hornet"], 
-       [:ever_yelp,"Yelp"],
-       [:ever_foursquare,"Foursquare"], 
-       [:ever_flickr,"Flickr"], 
-       [:ever_youtube,"YouTube"], 
-       [:ever_pinterest,"Pinterest"], 
-       [:ever_instagram,"Instagram"],
-       [:ever_other,"Other"] ]
+      [:frequency_tumblr, "Tumblr"],
+       [:frequency_trevorspace,"TrevorSpace"], 
+       [:frequency_grindr,"Grindr"], 
+       [:frequency_scruff,"Scruff"],
+       [:frequency_jackd,"Jack'd"], 
+       [:frequency_hornet,"Hornet"], 
+       [:frequency_yelp,"Yelp"],
+       [:frequency_foursquare,"Foursquare"], 
+       [:frequency_flickr,"Flickr"], 
+       [:frequency_youtube,"YouTube"], 
+       [:frequency_pinterest,"Pinterest"], 
+       [:frequency_instagram,"Instagram"],
+       [:frequency_other, "Other"] ]
    end
 
 end

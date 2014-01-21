@@ -1,83 +1,90 @@
 <% if @estimate.errors.any? %>
-<div id ="error_top">  Whoops! There is some incorrect and/or missing data. Please fix the errors
-  in the answers below.
+<div id ="error_top" class="field_with_errors" style="font-size=14pt;
+  font-weight:
+  bold;width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
+  There are some missing or incorrect answers below. LOOK FOR ENTRIES WITH THIS BACKGROUND COLOR. Please fix them and submit again. Thanks!
 </div>
 <% end %> 
 
 
 
-<div class="survey_section"
-     id="survey_section_4"><span class='title'>Estimation
-    Questions</span>
+<div class="survey_section" style="margin-left: 3em; margin-right: 3em;margin-top: 1em;">
+<div class="instructions">There are <b>two pages</b> of questions (39 total),
+ some having multiple parts. This is <b>page 2</b>.</div>
 
   <%= form_for @estimate, :url => {:action => 'update', :id => @estimate.id} do |f| %> 
 
-<ol>
-<li> <div class="question">
- Thinking about ALL of your friends,
-    both online (in places like Facebook, Google+, etc.) <i>and</i> in
-    the real world, how many of them are men living in the U.S. over
-    the age of 18?</div>
-<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:male_friends]) %></div>
-<div class = "answer">
-<%= f.text_field :male_friends, :id=>"total_men" %>
-</div>
-</li>
-
-
-<li> <div class="question">
-    Thinking about these  <span id="a_estimate_total_men"></span>
-    friends, how many of them would you say identify as gay or
-    bisexual?</div>
-<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:gay_friends]) %></div>
-<div class="answer">
-<%= f.text_field :gay_friends, :id=>"gay_men" %>
-</div>
-</li>
-   <li><div class="question"> According to Facebook you
+<ol start="35">
+   <li><div class="question"> According to Facebook, you
     have <span id="male_facebook_friends"><%=  @facebook_response.facebook_male_friends %></span> Facebook friends
     who are males. Thinking about ONLY these Facebook friends, how many
     of them would you say identify as gay or bisexual?</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:facebook_gay_friends]) %></div>
 <div class = "answer">
 <%= f.text_field :facebook_gay_friends, :id=>"gay_facebook_men" %></div></li>
+</ol>
 
-<li><div  class="question">Based on
-    your previous answer, that would
+That would
     mean <span id="estimated_percent_of_gb_friends">...</span> percent
-    of your Facebook friends are gay or bisexual men.<br /><br />Do
-    you think this percentage is</div>
-<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:accuracy]) %></div>
+    of your Facebook friends are gay or bisexual men.
+<ol start="36">
+<li><div  class="question">What is a reasonable upper bound on that percentage?
+<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:percentage_upper]) %></div>
 <div class="answer">
- <ol>   <li>  <%= f.radio_button :accuracy, "Low", :onclick=>"$('#accuracy').show()" %> too low </li>
-    <li> <%= f.radio_button :accuracy, "Right", :onclick=>"$('#accuracy').hide()" %> about right </li>
-     <li><%= f.radio_button :accuracy, "High", :onclick=>"$('#accuracy').show()" %> too
-     high </li></ol>
+ <%= f.text_field :percentage_upper %></div>
 </div>
 </li>
 
-<li id="accuracy" <% if @estimate.accuracy != "Low" && @estimate.accuracy != "High"%>style="display: none;"<% end %>>
-    <div class="question">What do you think the right
-    percentage is?</div>
- <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:right_percentage]) %></div>
+<li><div  class="question">What is a reasonable lower bound on that percentage?
+<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:percentage_lower]) %></div>
 <div class="answer">
-<%= f.text_field :right_percentage %></div>
+ <%= f.text_field :percentage_lower %></div>
+</div>
 </li>
+
+
+
+
+<li><div  class="question">How were you invited to take this survey?</div>
+<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:how_recruited]) %></div>
+<div class="answer">
+ <ol style="list-style:none;">   <li>  <%= f.radio_button :how_recruited, @how_recruited[0] %> <%= @how_recruited[0] %></li>
+
+<li><span style="color: #333333;">From a friend by:</span>
+<ol style="list-style:none;">
+    <li> <%= f.radio_button :how_recruited, @how_recruited[1] %> <%= @how_recruited[1] %></li>
+     <li><%= f.radio_button :how_recruited, @how_recruited[2] %> <%=@how_recruited[2] %> </li>
+    <li> <%= f.radio_button :how_recruited, @how_recruited[3] %> <%= @how_recruited[3] %></li>
+     <li><%= f.radio_button :how_recruited, @how_recruited[4] %> <%=@how_recruited[4] %> </li>
+     <li><%= f.radio_button :how_recruited, @how_recruited[5] %> <%=@how_recruited[5] %> </li>
+</ol>
+</li>
+</ol>
+</div>
+</li>
+
+  <li><div class="question">Finally, please enter an email address
+  where we
+  may send you Amazon.com credit.</div>
+<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:email_address]) %></div>
+<div class = "answer">
+<%= f.text_field :email_address, :id=>"email_address",:size => 30 %></div></li>
+
 </ol>
  <%= submit_tag "Click Here to Finish" %>
 
 <% end %>
 </div>
    <script>
+
+    
     $(function() {
       $("#total_men").keyup(function()
       {
         $("#a_estimate_total_men").text($("#total_men").val());
       });
 
-     
-
-      $("#gay_facebook_men").keyup(function() {
+     calcPercentFriends = function() {
         var total_male_facebook_friends = parseFloat($("#male_facebook_friends").text());
         var estimated_gb = parseFloat($("#gay_facebook_men").val());
         var percent_gb = Math.round(estimated_gb / total_male_facebook_friends * 100);
@@ -88,8 +95,15 @@
         else {
           $("#estimated_percent_of_gb_friends").text(percent_gb);
         }
+      };
+
+      $("#gay_facebook_men").keyup(calcPercentFriends);
+
+     calcPercentFriends();
       });
 
-      });
+
+
+
 
   </script>
