@@ -2,7 +2,7 @@
             body
             {
                 font-family: "lucida grande" ,tahoma,verdana,arial,sans-serif;
-                font-size: 10pt;
+                font-size: 12pt;
                 color: #333333;
                 width:700px;
             }
@@ -15,7 +15,7 @@
                 color: #3b5998;
                 outline-style: none;
                 text-decoration: none;
-                font-size: 10pt;
+                font-size: 12pt;
                 font-weight: bold;
             }
             .fbbody a:hover
@@ -38,8 +38,8 @@
                 border: 1px solid #d4dae8;
                 color: #333333;
                 padding: 10px;
-                font-size: 13px;
-                font-weight: bold;
+                font-size: 12px;
+                #font-weight: bold;
             }
             .fbinfobox
             {
