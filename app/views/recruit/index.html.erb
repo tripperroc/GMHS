@@ -37,9 +37,11 @@ a:active { color:blue; }
 <p>
 For each friend who takes the survey <b>using this internet
     address</b>,
-<blockquote>
-<a href ="<%= @invitation_url %>"><%=@invitation_url %></a>
-</blockquote>
+</p>
+<p>
+<a href ="<%= @invitation_url %>" style="font-size:10pt"><%=@invitation_url %></a>
+</p>
+<p>
 we will pay you $5 in Amazon.com credit.</p>
 
 <p>
@@ -104,7 +106,7 @@ removing apps <a href="https://www.facebook.com/help/204306713029340">here</a>.
           //Set code to run when the link is clicked
           // by assigning a function to "onclick"
           a.onclick = function() {
-
+/*
             // Your code here...
             FB.ui({
                    //method: 'send',     
@@ -119,7 +121,13 @@ removing apps <a href="https://www.facebook.com/help/204306713029340">here</a>.
                       $.post("<%= url_for action: :loginvitation %>",
             {"facebook_account_number":  entry, "recruitee_coupon": "<%= @recruitee_coupon %>"});
                  });
-             });
+             });*/
+             FB.ui({
+                   method: 'send',     
+                   link: "<%= @invitation_url %>" 
+                   //method: 'apprequests',     
+                   //message: 'Take a health survey for gay men'
+	    });
             //If you don't want the link to actually 
             // redirect the browser to another page,
             // "google.com" in our example here, then
