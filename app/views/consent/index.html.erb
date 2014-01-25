@@ -1,14 +1,12 @@
-<div style="margin-left: 3em; margin-right: 3em;margin-top:1em">
-  
+<div style="margin-top: 2em;">
 
 
-<div class = "instructions" style="">
-<b>Welcome!</b> For <b>10 minutes</b> of your time you can <b>earn $5</b> in
+<div class = "instructions" style="margin-bottom: 2em;">
+For <b>10 minutes</b> of your time you can <b>earn $5</b> in
 Amazon.com credit and <b>make an important contribution to gay and
     bisexual men's health</b>. 
-You may also <b>earn up to $15</b> for recruiting friends to take this, a survey by
-researchers from  the University of Rochester, the Rochester Institute
-of Technology, and Drexel University.
+You may also <b>earn up to $15</b> for recruiting friends to take this
+survey.
 
 <br />
 
@@ -17,7 +15,7 @@ of Technology, and Drexel University.
 
 <%= form_for @rsc, :url => { :controller => 'consent', :action => 'info_letter' }, :html=>{:id=>"eligible"}  do |f| %>
 <p></p>
-
+<div style="margin-right:auto;width: 500px;padding:1em; height: 200px; border:1px; border-style: dashed; background-color:#eee;text-color:#000;border-color:#333;font-color:#000">
     <div id = "age" style="margin-left: 0em;">
      <%= label_tag 'eighteen_or_older', 'Are you 18 years of age or
      older?' %>
@@ -75,7 +73,7 @@ of Technology, and Drexel University.
 
      </div>
 
-
+</div>
   <% end %>
   
 </div>

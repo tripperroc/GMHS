@@ -1,12 +1,11 @@
+<div style="margin-top: 2em;">
 
-<div style="margin-left: 3em; margin-right: 3em;margin-bottom:3em;">
-
-  <div  style="margin-top: 1em;">
+  
     You are <b>eligible</b> to take the survey! <b>Please read</b> the following information and <b>indicate below</b> whether
     or not you agree to participate. 
-  </div>
 
-  <div>
+
+  <div style="margin-top: 2em;">
   <%= render "info_letter_content" %>
 </div>
 
@@ -20,8 +19,7 @@
  <div id="facebook_login_button" style="margin-top: 1em;">
 
 
-<div>Do you agree? If so, <b>please click the button below</b>. This will add a Facebook application <%= link_to "(Why?)", root_url +  "consent/facebook_login?commit=I+Agree" %>,
-which you may remove after you finish the survey.</div>
+<div> If you agree, <b>please click the button below</b>.</div>
 
 <p>
        <fb:login-button 
@@ -47,5 +45,4 @@ window. <b>Thank you</b> for your consideration!
 
  
 </div>
-
 

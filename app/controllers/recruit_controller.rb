@@ -1,6 +1,6 @@
 class RecruitController < ApplicationController
 
-  layout "recruit"
+  #layout "recruit"
 
   def index   
     @invitation_url = url_for :controller => 'recruit', :action => 'invitation', :id => session[:recruiter_coupon]

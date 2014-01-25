@@ -2,16 +2,31 @@
 <html>
 <head>
   <title>Gay Men's Health Survey</title>
+  <meta name="viewport" content="width=660px" initial-scale="1.0">
   <%= stylesheet_link_tag    "application", :media => "all" %>
 
   <%= stylesheet_link_tag    "facebook", :media => "all" %>
 
   <style>
+   body, html {
+     margin: 0;
+     padding: 0;
+    }
+    #c {
+       position: absolute; 
+     width: 100%; 
+     height: 100%; 
+     }
     .field_with_errors {
        border:2px solid;
+       padding: 1em;
        background-color: #f9d0fa;
        border-color: #f9d0fa;
        color: #000000;
+       border:1px;
+       border-style: dashed;
+       border-color:#333;
+       width:100;
     }
     table {
       cellpadding: 3px;
@@ -31,16 +46,29 @@
       # background-color:#f0ebfa;
       # padding: 1em 1em 1em 1em;
     }
-    
+       
+     
   </style>
+
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render "shared/load_facebook_sdk" %>
-<div style=""><%= image_tag("banner.png", :size => "360x60") %></div>
+<div style="background:#48649f none repeat scroll 0%;"><div style="width: 600px; margin-left: auto; margin-right:auto;"><%= image_tag("banner6.png", border: "0",:align=> "middle" ) %></div></div>
 
+<%= render "shared/load_facebook_sdk" %>
+
+<div style="width: 600px; margin-left: auto; margin-right:auto;">
 <%= yield %>
 
+<div style="margin-top: 3em; font-size:10pt;"><hr/> Supported in part by
+  National Science Foundation Award SES-1111016. This survey is
+  conducted by researchers at The University of Rochester, Rochester
+  Institute of Technology, and Drexel University. For more details,
+  see <a style="font-size:10pt;" target="_blank"
+  href="http://www.lgbtdata.com/respondent-driven-sampling-in-social-computing-systems-project-redssocs.html">the
+  project homepage</a>.
+  </div>
+  </div>
 </body>
 </html>
