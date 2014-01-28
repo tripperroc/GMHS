@@ -11,12 +11,12 @@ class ConsentController < ApplicationController
          redirect_to :action => 'not_eligible'
       end
       @facebook_response = FacebookResponse.new
-    else 
-      redirect_to :action => 'index'
+#    else 
+#      redirect_to :action => 'index'
     end
   end
 
-  def index
+  def screening
     @rsc = RedssocsSurveyConsent.new
     @recruitee_coupon = session[:recruitee_coupon]
   end

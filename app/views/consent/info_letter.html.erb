@@ -1,7 +1,7 @@
 <div style="margin-top: 2em;">
 
   
-    You are <b>eligible</b> to take the survey! <b>Please read</b> the following information and <b>indicate below</b> whether
+  <b>Please read</b> the following information and <b>indicate below</b> whether
     or not you agree to participate. 
 
 
@@ -13,36 +13,25 @@
     <span style="float: right;">
       <%= link_to "Download a Copy of this Letter", root_url + "info_letter.pdf" %>
     </span>
+</div>
+ <p>
 
-    <span style="float: left;">
- <%= form_for @facebook_response, :url => {:action => 'update'}  do |f| %>
- <div id="facebook_login_button" style="margin-top: 1em;">
-
-
-<div> If you agree, <b>please click the button below</b>.</div>
-
-<p>
-       <fb:login-button 
-        show-faces="false"
-        scope="user_relationships,user_relationship_details,friends_relationships,friends_relationship_details"
-        onlogin="$('#new_facebook_response').submit()">
-        I agree to participate
-      </fb:login-button>
-</p>
-
-
-<p>
-If you do <b>not</b> wish to participate, please close this
-window. <b>Thank you</b> for your consideration!
-</p>
- 
-
+<%= form_tag({action: "screening"}, id: "consent") do %>
+<div> Do you agree to these terms and conditions?.</div>
+<%= radio_button_tag(:consent, "Yes", false, :onclick => "$('#consent').submit()") %>
+<%= label_tag(:consent, "Yes") %>
+<%= radio_button_tag(:consent, "No") %>
+<%= label_tag(:consent, "No") %>
   <% end %>
 
-
-
-  </div>
-
+</p>
  
-</div>
+
+  
+
+
+
+  
+ 
+
 
