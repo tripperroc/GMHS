@@ -7,11 +7,7 @@ class CreateResponses < ActiveRecord::Migration
       t.string :email_address
       t.integer :age
       t.string :birth_sex
-      t.boolean :gender_male
-      t.boolean :gender_female
-      t.boolean :gender_mtf
-      t.boolean :gender_ftm
-      t.boolean :gender_other
+      t.string :gender
       t.string  :latino
       t.boolean :namerican
       t.boolean :asian

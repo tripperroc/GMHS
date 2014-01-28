@@ -13,36 +13,37 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
 
   <%= form_for @estimate, :url => {:action => 'update', :id => @estimate.id} do |f| %> 
 
-<ol start="35">
+<ol start="35" >
    <li><div class="question"> According to Facebook, you
     have <span id="male_facebook_friends"><%=  @facebook_response.facebook_male_friends %></span> Facebook friends
     who are males. Thinking about ONLY these Facebook friends, how many
     of them would you say identify as gay or bisexual?</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:facebook_gay_friends]) %></div>
 <div class = "answer">
-<%= f.text_field :facebook_gay_friends, :id=>"gay_facebook_men" %></div></li>
-</ol>
+<%= f.text_field :facebook_gay_friends, :id=>"gay_facebook_men"
+%></div></li>
 
-That would
+<li><div  class="question">Based on
+    your previous answer, that would
     mean <span id="estimated_percent_of_gb_friends">...</span> percent
-    of your Facebook friends are gay or bisexual men.
-<ol start="36">
-<li><div  class="question">What is a reasonable upper bound on that percentage?
-<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:percentage_upper]) %></div>
+    of your Facebook friends are gay or bisexual men.<br /><br />Do
+    you think this percentage is</div>
+<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:accuracy]) %></div>
 <div class="answer">
- <%= f.text_field :percentage_upper %></div>
+ <ol>   <li>  <%= f.radio_button :accuracy, "Low", :onclick=>"$('#accuracy').show()" %> too low </li>
+    <li> <%= f.radio_button :accuracy, "Right", :onclick=>"$('#accuracy').hide()" %> about right </li>
+     <li><%= f.radio_button :accuracy, "High", :onclick=>"$('#accuracy').show()" %> too
+     high </li></ol>
 </div>
 </li>
 
-<li><div  class="question">What is a reasonable lower bound on that percentage?
-<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:percentage_lower]) %></div>
+<li id="accuracy" <% if @estimate.accuracy != "Low" && @estimate.accuracy != "High"%>style="display: none;"<% end %>>
+    <div class="question">What do you think the right
+    percentage is?</div>
+ <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:right_percentage]) %></div>
 <div class="answer">
- <%= f.text_field :percentage_lower %></div>
-</div>
+<%= f.text_field :right_percentage %></div>
 </li>
-
-
-
 
 <li><div  class="question">How were you invited to take this survey?</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:how_recruited]) %></div>

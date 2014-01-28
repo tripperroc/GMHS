@@ -19,19 +19,14 @@ class Response < ActiveRecord::Base
 
   
   #validates :age, :birth_sex, presence: true, on: :update
-  validates :age, :birth_sex, :marital_status, :latino, :num_children, :highest_grade_level_completed, :income, :health_care_provider, :have_health_plan, :general_health, :height_feet, :height_inches, :weight, :one_drink, :smoked_last_year, :ever_self_harm, :ever_seriously_ill, :violence_victim_ever, :care_swear, :care_fear, :care_harm,:sex_feelings, :sex_who, :sex_category, :discrimination_insurance, :discrimination_how_treated, :discrimination_public, :discrimination_job, :discrimination_bullied, :ever_aids, :ever_suicidal, :frequency_facebook, :frequency_twitter, :frequency_google_plus, :frequency_myspace, :frequency_linkedin, :frequency_other, :frequency_tumblr, :frequency_trevorspace, :frequency_grindr, :frequency_scruff, :frequency_jackd,  :frequency_hornet,  :frequency_yelp,  :frequency_foursquare, :frequency_flickr,  :frequency_youtube,  :frequency_pinterest, :frequency_instagram, presence: true, on: :update
+  validates :age, :birth_sex, :gender, :marital_status, :latino, :num_children, :highest_grade_level_completed, :income, :health_care_provider, :have_health_plan, :general_health, :height_feet, :height_inches, :weight, :one_drink, :smoked_last_year, :ever_self_harm, :ever_seriously_ill, :violence_victim_ever, :care_swear, :care_fear, :care_harm,:sex_feelings, :sex_who, :sex_category, :discrimination_insurance, :discrimination_how_treated, :discrimination_public, :discrimination_job, :discrimination_bullied, :ever_aids, :ever_suicidal, :frequency_facebook, :frequency_twitter, :frequency_google_plus, :frequency_myspace, :frequency_linkedin, :frequency_other, :frequency_tumblr, :frequency_trevorspace, :frequency_grindr, :frequency_scruff, :frequency_jackd,  :frequency_hornet,  :frequency_yelp,  :frequency_foursquare, :frequency_flickr,  :frequency_youtube,  :frequency_pinterest, :frequency_instagram, presence: true, on: :update
 
   validates :age, :num_children, :height_feet, :height_inches, :weight, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, on: :update
   validate :checkboxes, on: :update
                                                                                                                           validates :height_inches, numericality: {less_than: 12}, on: :update
 
   def checkboxes
-   boxes = [[:gender, [[gender_male, :gender_male],
-              [gender_female, :gender_female],
-              [gender_mtf, :gender_mtf],
-              [gender_ftm,:gender_ftm],
-              [gender_other,:gender_other]]],
-    [:ethnicity, [[namerican,:namerican], 
+   boxes = [[:ethnicity, [[namerican,:namerican], 
                   [asian, :asian], 
                   [aamerican, :aamerican],
                   [pacific,:pacific],

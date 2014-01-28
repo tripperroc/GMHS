@@ -63,11 +63,11 @@ class SurveyorController < ApplicationController
   def answers
     @mf = ["Male", "Female"]
 
-   @gender = [[:gender_male, "Male"],
-              [:gender_female, "Female"], 
-              [:gender_mtf, "Transgender, male-to-female"],
-              [:gender_ftm, "Transgender, female-to-male"],
-              [:gender_other, "Other"]]
+   @gender = ["Male",
+              "Female", 
+             "Transgender, male-to-female",
+              "Transgender, female-to-male",
+              "Other"]
 
     @ethnicity = [[:namerican, "American Indian or Alaska Native"], 
                   [:asian, "Asian"], 

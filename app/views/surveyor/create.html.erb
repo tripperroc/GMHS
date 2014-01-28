@@ -9,14 +9,14 @@
 <div style="margin-left: auto; margin-right: auto;width:600;">
 
 <div class="instructions">There are <b>two pages</b> of questions (39 total),
- some having multiple parts. This is <b>page 1</b>.</div>
+ some having multiple parts. This is <b>page 1</b> and there are 34 questions.  The next page has only 5 brief questions.</div>
  <%= form_for @response, :url => { :action => 'update', :id  =>@response.id} do |f| %>
 
  <ol>
 <li>
 <div class="question"> What is your age (in years)? </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:age]) %></div>
-<div class="answer"><%= f.text_field :age %></div>
+<div class="answer"><%= f.text_field :age, style: "margin-left: 1em;" %></div>
 </li>
 
 <li>
@@ -30,10 +30,10 @@
 </li>
 
 <li>
-<div class="question"> What is your current gender identity? (Check all that apply) </div>
+<div class="question"> What is your current gender identity? </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:gender]) %></div>
 <div class="answer">
-<%= render( :partial => 'checkboxes', :object => @gender, :locals=> {:f => f}) %>
+<%= render( :partial => 'radiobuttons', :object => @gender, :locals=> {:f => f, :name => :gender}) %>
  </div>
 </li>
 
@@ -65,7 +65,7 @@
 <li>
 <div class="question"> How many children have you EVER had, including those who are not now living? Please include any adopted, foster or stepchildren who EVER lived with you. </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:num_children]) %></div>
-<div class="answer"><%= f.text_field :num_children %></div>
+<div class="answer"><%= f.text_field :num_children, style: "margin-left: 1em;" %></div>
 </li>
 
 <li>
@@ -130,9 +130,9 @@
 <div class="answer">
 <ol type="a">
 <li><div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:height_feet]) %></div>
-<%= f.label :height_feet, "Height (feet)" %>  <%= f.text_field :height_feet %></li>
-<li><div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:height_inches]) %></div><%= f.label :height_inches, "Height (inches)" %>  <%= f.text_field :height_inches %></li>
-<li><div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:weight]) %></div><%= f.label :weight, "Weight (pounds)" %>  <%= f.text_field :weight %></li>
+<%= f.label :height_feet, "Height (feet)" %>  <%= f.text_field :height_feet, style: "margin-left: 1em;" %></li>
+<li><div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:height_inches]) %></div><%= f.label :height_inches, "Height (inches)" %>  <%= f.text_field :height_inches, style: "margin-left: 1em;" %></li>
+<li><div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:weight]) %></div><%= f.label :weight, "Weight (pounds)" %>  <%= f.text_field :weight, style: "margin-left: 1em;" %></li>
 </ol>
 </div
 </li>
@@ -167,7 +167,7 @@
 
 <li>
 <div class="question">How many drinks did you USUALLY have on days when you drank during the last 12 months?</div>
-<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:drink_frequency_daily]) %></div><div class="answer"><%= f.text_field :drink_frequency_daily %></div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:drink_frequency_daily]) %></div><div class="answer"><%= f.text_field :drink_frequency_daily, style: "margin-left: 1em;" %></div>
 </li>
 
 <li>
@@ -213,19 +213,18 @@
 <div class="question">  Now I’d like to ask you about your experiences
   with medicines and other kinds of drugs that you may have used ON
   YOUR OWN – that is, either: 
-   <div style="font-size: .8em;")
-      <br />
-     <br />
+   <br />
+    <br/>
       <ul>
       <li>WITHOUT a doctor’s prescription;</li>
       <li>In GREATER amounts, MORE OFTEN, or LONGER than prescribed; or</li>
       <li>For a reason other than a doctor said you should use them.</li>
       </ul> 
+<br />
       People use these medicines and drugs ON THEIR OWN to feel more alert, to relax or quiet their nerves, to feel better, to enjoy themselves, 
       or to get high or just to see how they would work
       <br />
-      <br /> 
-</div>
+<br />
       During the last 12 months, did you use any of these medicines or drugs ON YOUR OWN? Please do not include any over-the-counter medicines or herbal medicines. (Check all that apply)</div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:drugs]) %></div>
 <div class="answer">
@@ -257,12 +256,12 @@
 <li>
 <div class="question"> How old were you the FIRST time this happen</div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_age_first]) %></div>
-<div class="answer"><%= f.text_field :violence_age_first %></div>
+<div class="answer"><%= f.text_field :violence_age_first, style: "margin-left: 1em;" %></div>
 </li>
 <li>
 <div class="question"> How old were you the MOST RECENT time this happened?</div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_age_most_recent]) %></div>
-<div class="answer"><%= f.text_field :violence_age_most_recent %></div>
+<div class="answer"><%= f.text_field :violence_age_most_recent, style: "margin-left: 1em;" %></div>
 </li>
 <li>
 <div class="question">In your ENTIRE life Before you were 18 years old, were you physically attacked or badly beaten up or injured by either of your parents or any other people who raised you? </div>
@@ -447,7 +446,7 @@
 <li>
 <div class = "question">Which social networks do you check?</div>
 <div class = "answer">
-<table>
+<table style="margin-left: 1em;">
 <tr>
 <tr><td></td><%= render( :partial => 'header', :collection => @frequency, :locals=> {:f => f}) %></tr>
 <%= render( :partial => 'radiotable', :collection => @sns, :locals=> {:f => f, :cols=>@frequency}) %>

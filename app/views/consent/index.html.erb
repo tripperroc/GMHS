@@ -30,7 +30,7 @@ survey.
       Sorry. You are ineligible to take this survey.
 </div>
     <div id="gender" style="display: none; margin-left: 0em;">
-        <%= label_tag 'gender', 'Do you consider yourself to be' %>
+        <%= label_tag 'gender', 'What is your current gender identity?' %>
         <br />
         <%= f.radio_button :gender, "Male", :onclick => "$('#gender').hide();$('#sexuality').show(500);" %>
        <%= label_tag 'gender_male', 'Male' %>
@@ -48,7 +48,7 @@ survey.
         <%= label_tag 'gender_other', 'Other' %>
 </div>
     <div id="sexuality" style="display: none; margin-left: 0em;">
-        Do you consider yourself to be
+        Which of the categories best describes you?
         <br />
        <%= f.radio_button :orientation, "Heterosexual", :onclick => "$('#sexuality').hide();$('#ineligible').show(500);" %>
        <%= label_tag 'heterosexual', 'Heterosexual (straight)' %>
