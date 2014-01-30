@@ -4,5 +4,5 @@ class Estimate < ActiveRecord::Base
    validates :right_percentage, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 },if: "accuracy == 'High' || accuracy == 'Low'", on: :update
 
 
-    validates  :facebook_gay_friends, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: :facebook_male_friends }, on: :update
+    validates  :facebook_gay_friends, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, on: :update
 end
