@@ -15,10 +15,10 @@ class EstimateController < ApplicationController
 
   def update
     @how_recruited = ["Online ad",
-      "email",
-       "phone (voice)",
-       "phone (text)",
-       "Facebook",
+      "By email",
+       "By phone (voice)",
+       "By phone (text)",
+       "By Facebook",
        "Other"]
     params.require(:estimate).permit!   
     @estimate = Estimate.find(params[:id])

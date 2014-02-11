@@ -30,7 +30,7 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
     you think this percentage is</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:accuracy]) %></div>
 <div class="answer">
- <ol>   <li>  <%= f.radio_button :accuracy, "Low", :onclick=>"$('#accuracy').show()" %> too low </li>
+ <ol style="list-style:none;">   <li>  <%= f.radio_button :accuracy, "Low", :onclick=>"$('#accuracy').show()" %> too low </li>
     <li> <%= f.radio_button :accuracy, "Right", :onclick=>"$('#accuracy').hide()" %> about right </li>
      <li><%= f.radio_button :accuracy, "High", :onclick=>"$('#accuracy').show()" %> too
      high </li></ol>
@@ -49,16 +49,12 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:how_recruited]) %></div>
 <div class="answer">
  <ol style="list-style:none;">   <li>  <%= f.radio_button :how_recruited, @how_recruited[0] %> <%= @how_recruited[0] %></li>
-
-<li><span style="color: #333333;">From a friend by:</span>
-<ol style="list-style:none;">
     <li> <%= f.radio_button :how_recruited, @how_recruited[1] %> <%= @how_recruited[1] %></li>
      <li><%= f.radio_button :how_recruited, @how_recruited[2] %> <%=@how_recruited[2] %> </li>
     <li> <%= f.radio_button :how_recruited, @how_recruited[3] %> <%= @how_recruited[3] %></li>
      <li><%= f.radio_button :how_recruited, @how_recruited[4] %> <%=@how_recruited[4] %> </li>
      <li><%= f.radio_button :how_recruited, @how_recruited[5] %> <%=@how_recruited[5] %> </li>
-</ol>
-</li>
+
 </ol>
 </div>
 </li>
