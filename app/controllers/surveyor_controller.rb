@@ -157,6 +157,8 @@ class SurveyorController < ApplicationController
      "2 to 3 days a month",
      "Once a month or less"]
 
+ @satisfaction = ["Very satisfied", "Satisfied", "Dissatisfied", "Very dissatisfied"]
+
       @drugs = [[:sedatives_last_year, "Sedatives, for example, sleeping pills, barbiturates, Seconal, Quaaludes, or Chloral Hydrate"],
     [:tranquilizers_last_year, "Tranquilizers or anti-anxiety drugs, for example, Valium, Librium, muscle relaxants, or Zanax "],
     [:painkillers_last_year, "Painkillers, for example, Codeine, Darvon, Percodan, Oxycontin, Dilaudid, Demerol, Celebrex or Vioxx "],

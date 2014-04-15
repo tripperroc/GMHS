@@ -126,6 +126,26 @@
 </li>
 
 <li>
+<div class="question">In general, how satisfied are you with your life? </div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:how_satisfied]) %></div>
+<div class="answer">
+<%= render( :partial => 'radiobuttons', :object => @satisfaction, :locals=> {:f => f, :name => :how_satisfied}) %>
+</div
+</li>
+
+<li>
+<div class="question">Now thinking about your mental health, which includes stress, depression, and problems 
+with emotions, for how many days during the past 30 days was your mental health not 
+good?  
+</div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:no_days]) %></div>
+<div class="answer"><%= f.text_field :no_days, style: "margin-left:
+						       1em;" %></div>
+
+</li>
+
+
+<li>
 <div class="question">And now, please tell me your height and weight as these are important factors for this survey.</div>
 <div class="answer">
 <ol type="a">
@@ -229,7 +249,7 @@
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:drugs]) %></div>
 <div class="answer">
 <%= render( :partial => 'checkboxes', :object => @drugs, :locals=> {:f => f}) %>
-</div
+</div>
 </li>
 
 <li>
@@ -237,75 +257,67 @@
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:ever_self_harm]) %></div>
 <div class="answer">
 <%= render( :partial => 'radiobuttons', :object => @yesno, :locals=> {:f => f, :name => :ever_self_harm}) %>
-</div
+</div>
 </li>
 
 <li>
-<div class="question">In your ENTIRE life Did you EVER have a very serious or life-threatening illness? </div>
+<div class="question">In your ENTIRE life, did you EVER have a very serious or life-threatening illness? </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:ever_seriously_ill]) %></div>
 <div class="answer">
 <%= render( :partial => 'radiobuttons', :object => @yesno, :locals=> {:f => f, :name => :ever_seriously_ill}) %>
-</div
+</div>
 </li>
 
 <li>
-<div class="question">In your ENTIRE life Were you EVER sexually assaulted, molested or raped or did you EVER experience unwanted sexual activity?</div>
+<div class="question">In your ENTIRE life, were you EVER sexually assaulted, molested or raped or did you EVER experience unwanted sexual activity?</div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_victim_ever]) %></div>
-<div class="answer"><%= render( :partial =>  'ynradiobutton', :locals=>{:f => f, :name => :violence_victim_ever, :dependency => "qs_violence"}) %>
-<ol  type = "a" id="qs_violence" <% if @response.violence_victim_ever != "Yes" %>style="display: none;"<% end %>>
-<li>
-<div class="question"> How old were you the FIRST time this happen</div>
-<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_age_first]) %></div>
-<div class="answer"><%= f.text_field :violence_age_first, style: "margin-left: 1em;" %></div>
-</li>
-<li>
-<div class="question"> How old were you the MOST RECENT time this happened?</div>
-<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_age_most_recent]) %></div>
-<div class="answer"><%= f.text_field :violence_age_most_recent, style: "margin-left: 1em;" %></div>
-</li>
-<li>
-<div class="question">In your ENTIRE life Before you were 18 years old, were you physically attacked or badly beaten up or injured by either of your parents or any other people who raised you? </div>
-<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_victim_parents]) %></div>
-<div class="answer">
-<%= render( :partial => 'radiobuttons', :object => @yesno, :locals=> {:f => f, :name => :violence_victim_parents}) %>
-</div
-</li>
+<div class="answer"><%= render( :partial =>  'ynradiobutton', :locals=>{:f => f, :name => :violence_victim_ever, :dependency => "qs_violence"}) %></div>
+
 
 <li>
-<div class="question">In your ENTIRE life Before you were 18 years old, were you seriously neglected by either of your parents or any other people who raised you? </div>
+<div class="question">In your ENTIRE life BEFORE you were 18 years old, were you seriously neglected by either of your parents or any other people who raised you? </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_ever_neglected]) %></div>
 <div class="answer">
 <%= render( :partial => 'radiobuttons', :object => @yesno, :locals=> {:f => f, :name => :violence_ever_neglected}) %>
-</div
+</div>
 </li>
+
 <li>
-<div class="question">In your ENTIRE life Were you EVER physically attacked or badly beaten up or injured by your spouse or romantic partner? </div>
+<div class="question">In your ENTIRE life BEFORE you were 18 years old, were you physically attacked or badly beaten up or injured by either of your parents or any other people who raised you? </div>
+<div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_victim_parents]) %></div>
+<div class="answer">
+<%= render( :partial => 'radiobuttons', :object => @yesno, :locals=> {:f => f, :name => :violence_victim_parents}) %>
+</div>
+</li>
+
+<li>
+<div class="question">In your ENTIRE life, were you EVER physically attacked or badly beaten up or injured by your spouse or romantic partner? </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_ever_spouse]) %></div>
 <div class="answer">
 <%= render( :partial => 'radiobuttons', :object => @yesno, :locals=> {:f => f, :name => :violence_ever_spouse}) %>
-</div
+</div>
 </li>
 
 
 <li>
-<div class="question">In your ENTIRE life Were you EVER physically attacked or badly beaten up or injured by anyone else? </div>
+<div class="question">In your ENTIRE life, were you EVER physically attacked or badly beaten up or injured by anyone else? </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_ever_other]) %></div>
 <div class="answer">
 <%= render( :partial => 'radiobuttons', :object => @yesno, :locals=> {:f => f, :name => :violence_ever_other}) %>
-</div
+</div>
 </li>
 
 <li>
-<div class="question">In your ENTIRE life Were you EVER mugged, held up or threatened with a weapon? </div>
+<div class="question">In your ENTIRE life, were you EVER mugged, held up or threatened with a weapon? </div>
 <div class="errors"><%= render(:partial => 'errors', :object => @response.errors[:violence_ever_mugged]) %></div>
 <div class="answer">
 <%= render( :partial => 'radiobuttons', :object => @yesno, :locals=> {:f => f, :name => :violence_ever_mugged}) %>
-</div
-</li>
-
-</ol>
 </div>
 </li>
+
+
+
+
 
 <br />
 <div class="question"> The next few questions are about how your parents or caregivers

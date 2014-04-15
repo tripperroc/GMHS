@@ -10,24 +10,36 @@
 		<string>139.17.0.185490</string>
 	</array>
 	<key>AutoAdjust</key>
-	<true/>
+	<false/>
 	<key>BackgroundGraphic</key>
 	<dict>
 		<key>Bounds</key>
-		<string>{{0, 0}, {576, 733}}</string>
+		<string>{{0, 0}, {600, 315}}</string>
 		<key>Class</key>
 		<string>SolidGraphic</string>
 		<key>FontInfo</key>
 		<dict>
 			<key>Font</key>
-			<string>HiraKakuProN-W3</string>
+			<string>MS-Gothic</string>
 			<key>Size</key>
-			<real>18</real>
+			<real>80</real>
 		</dict>
 		<key>ID</key>
 		<integer>2</integer>
 		<key>Style</key>
 		<dict>
+			<key>fill</key>
+			<dict>
+				<key>Color</key>
+				<dict>
+					<key>b</key>
+					<string>0.545427</string>
+					<key>g</key>
+					<string>0.26063</string>
+					<key>r</key>
+					<string>0.18776</string>
+				</dict>
+			</dict>
 			<key>shadow</key>
 			<dict>
 				<key>Draws</key>
@@ -44,16 +56,18 @@
 	<integer>0</integer>
 	<key>CanvasOrigin</key>
 	<string>{0, 0}</string>
+	<key>CanvasSize</key>
+	<string>{600, 315}</string>
 	<key>ColumnAlign</key>
 	<integer>1</integer>
 	<key>ColumnSpacing</key>
 	<real>36</real>
 	<key>CreationDate</key>
-	<string>2014-01-18 23:44:59 +0000</string>
+	<string>2014-03-04 15:24:51 +0000</string>
 	<key>Creator</key>
 	<string>Christopher Homan</string>
 	<key>DisplayScale</key>
-	<string>1 0/72 in = 1.0000 in</string>
+	<string>1 pt = 1 px</string>
 	<key>GraphDocumentVersion</key>
 	<integer>8</integer>
 	<key>GraphicsList</key>
@@ -65,22 +79,18 @@
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{3, 0}, {48, 49}}</string>
+					<string>{{19.999999999999943, 53.000000000000043}, {164.92983508245857, 165.0085436731728}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
-					<key>FitText</key>
-					<string>YES</string>
-					<key>Flow</key>
-					<string>Resize</string>
 					<key>FontInfo</key>
 					<dict>
 						<key>Font</key>
-						<string>AppleSymbols</string>
+						<string>MS-Gothic</string>
 						<key>Size</key>
-						<real>45</real>
+						<real>88</real>
 					</dict>
 					<key>ID</key>
-					<integer>30</integer>
+					<integer>40</integer>
 					<key>Shape</key>
 					<string>Rectangle</string>
 					<key>Style</key>
@@ -126,7 +136,7 @@
 {\colortbl;\red255\green255\blue255;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs96 \cf1 \uc0\u9764 }</string>
+\f0\fs344 \cf1 \uc0\u9764 }</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -135,7 +145,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{9, 16.500001182480446}, {36, 48}}</string>
+					<string>{{42.919699068625697, 106.91969906862565}, {121.23076678029015, 164.92983508245857}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -153,7 +163,7 @@
 					<key>HFlip</key>
 					<string>YES</string>
 					<key>ID</key>
-					<integer>31</integer>
+					<integer>41</integer>
 					<key>Rotation</key>
 					<real>270</real>
 					<key>Shape</key>
@@ -191,7 +201,7 @@
 				</dict>
 			</array>
 			<key>ID</key>
-			<integer>29</integer>
+			<integer>39</integer>
 		</dict>
 	</array>
 	<key>GridInfo</key>
@@ -201,7 +211,7 @@
 	<key>GuidesVisible</key>
 	<string>YES</string>
 	<key>HPages</key>
-	<integer>1</integer>
+	<integer>2</integer>
 	<key>ImageCounter</key>
 	<integer>1</integer>
 	<key>KeepToScale</key>
@@ -241,7 +251,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2014-03-04 15:12:11 +0000</string>
+	<string>2014-03-04 18:26:09 +0000</string>
 	<key>Modifier</key>
 	<string>Christopher Homan</string>
 	<key>NotesVisible</key>
@@ -315,9 +325,14 @@
 		<key>CurrentSheet</key>
 		<integer>0</integer>
 		<key>ExpandedCanvases</key>
-		<array/>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>Canvas 1</string>
+			</dict>
+		</array>
 		<key>Frame</key>
-		<string>{{453, 25}, {968, 685}}</string>
+		<string>{{70, 46}, {870, 687}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -331,7 +346,7 @@
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{-121, 0}, {819, 530}}</string>
+		<string>{{-68, -108}, {735, 532}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>

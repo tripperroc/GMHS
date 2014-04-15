@@ -45,6 +45,40 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
 <%= f.text_field :right_percentage %></div>
 </li>
 
+ <li><div class="question">Of
+    the <span id="recruitable_facebook_friends">
+<%= "0" %></span>
+    Facebook friends who you say identify as gay or
+    bisexual how many of them do you think would take the survey if
+    you asked them?</div>
+<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:facebook_recruitable_friends]) %></div>
+<div class = "answer">
+<%= f.text_field :facebook_recruitable_friends, :id=>"recruitable_facebook_men"%></div></li>
+
+<li><div  class="question">Based on
+    your previous answer, that would
+    mean <span id="estimated_percent_of_recruitable_friends">...</span> percent
+    of your Facebook friends who identify as gay or bisexual men would
+    take this survey if you asked them.<br /><br />Do
+    you think this percentage is</div>
+<div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:accuracy_recruitable]) %></div>
+<div class="answer">
+ <ol style="list-style:none;">   <li>  <%= f.radio_button :accuracy_recruitable, "Low", :onclick=>"$('#accuracy_recruitable').show()" %> too low </li>
+    <li> <%= f.radio_button :accuracy_recruitable, "Right", :onclick=>"$('#accuracy').hide()" %> about right </li>
+     <li><%= f.radio_button :accuracy_recruitable, "High", :onclick=>"$('#accuracy').show()" %> too
+     high </li></ol>
+</div>
+</li>
+
+<li id="accuracy_recruitable" <% if @estimate.accuracy_recruitable != "Low" && @estimate.accuracy_recruitable != "High"%>style="display: none;"<% end %>>
+    <div class="question">What do you think the right
+    percentage is?</div>
+ <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:right_percentage_recruitable]) %></div>
+<div class="answer">
+<%= f.text_field :right_percentage_recruitable %></div>
+</li>
+
+
 <li><div  class="question">How were you invited to take this survey?</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:how_recruited]) %></div>
 <div class="answer">
@@ -75,25 +109,44 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
 
     
     $(function() {
+/*
       $("#total_men").keyup(function()
       {
         $("#a_estimate_total_men").text($("#total_men").val());
       });
+*/
 
      calcPercentFriends = function() {
         var total_male_facebook_friends = parseFloat($("#male_facebook_friends").text());
         var estimated_gb = parseFloat($("#gay_facebook_men").val());
         var percent_gb = Math.round(estimated_gb / total_male_facebook_friends * 100);
-
+        var estimated_recruitable =
+        parseFloat($("#recruitable_facebook_men").val());
+        var percent_recruitable = Math.round(estimated_recruitable/estimated_gb * 100);
         if (isNaN(percent_gb)) {
           $("#estimated_percent_of_gb_friends").text("...");
         }
         else {
           $("#estimated_percent_of_gb_friends").text(percent_gb);
         }
+        if (isNaN(estimated_gb)) { 
+           $("#recruitable_facebook_friends").text("...");
+        }
+        else {
+            $("#recruitable_facebook_friends").text(estimated_gb);
+        }
+       if (isNaN(percent_recruitable)) {
+          $("#estimated_percent_of_recruitable_friends").text("...");
+        }
+        else {
+          $("#estimated_percent_of_recruitable_friends").text(percent_recruitable);
+        }
+ 
       };
+    
 
       $("#gay_facebook_men").keyup(calcPercentFriends);
+      $("#recruitable_facebook_men").keyup(calcPercentFriends);
 
      calcPercentFriends();
       });

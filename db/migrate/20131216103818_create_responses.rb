@@ -35,6 +35,8 @@ class CreateResponses < ActiveRecord::Migration
       t.string :health_care_provider
       t.string :have_health_plan
       t.string :general_health
+      t.string :how_satisfied
+      t.integer :no_days
       t.integer :height_feet
       t.integer :height_inches
       t.integer :weight
@@ -58,8 +60,6 @@ class CreateResponses < ActiveRecord::Migration
       t.string :ever_self_harm
       t.string :ever_seriously_ill
       t.string  :violence_victim_ever
-      t.integer :violence_age_first
-      t.integer :violence_age_most_recent
       t.string :violence_victim_parents
       t.string :violence_ever_neglected
       t.string :violence_ever_spouse
