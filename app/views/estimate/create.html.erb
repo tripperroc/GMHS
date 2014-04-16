@@ -8,12 +8,12 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
 
 
 <div class="survey_section" style="margin-left: 3em; margin-right: 3em;margin-top: 1em;">
-<div class="instructions">There are <b>two pages</b> of questions (39 total),
+<div class="instructions">There are <b>two pages</b> of questions (47 total),
  some having multiple parts. This is <b>page 2</b>.</div>
 
   <%= form_for @estimate, :url => {:action => 'update', :id => @estimate.id} do |f| %> 
 
-<ol start="35" >
+<ol start="42" >
    <li><div class="question"> According to Facebook, you
     have <span id="male_facebook_friends"><%=  @facebook_response.facebook_male_friends %></span> Facebook friends
     who are males. Thinking about ONLY these Facebook friends, how many
@@ -64,8 +64,8 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:accuracy_recruitable]) %></div>
 <div class="answer">
  <ol style="list-style:none;">   <li>  <%= f.radio_button :accuracy_recruitable, "Low", :onclick=>"$('#accuracy_recruitable').show()" %> too low </li>
-    <li> <%= f.radio_button :accuracy_recruitable, "Right", :onclick=>"$('#accuracy').hide()" %> about right </li>
-     <li><%= f.radio_button :accuracy_recruitable, "High", :onclick=>"$('#accuracy').show()" %> too
+    <li> <%= f.radio_button :accuracy_recruitable, "Right", :onclick=>"$('#accuracy_recruitable').hide()" %> about right </li>
+     <li><%= f.radio_button :accuracy_recruitable, "High", :onclick=>"$('#accuracy_recruitable').show()" %> too
      high </li></ol>
 </div>
 </li>
