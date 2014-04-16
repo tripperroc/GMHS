@@ -35,14 +35,15 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
      <li><%= f.radio_button :accuracy, "High", :onclick=>"$('#accuracy').show()" %> too
      high </li></ol>
 </div>
-</li>
-
+<ul>
 <li id="accuracy" <% if @estimate.accuracy != "Low" && @estimate.accuracy != "High"%>style="display: none;"<% end %>>
     <div class="question">What do you think the right
     percentage is?</div>
  <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:right_percentage]) %></div>
 <div class="answer">
 <%= f.text_field :right_percentage %></div>
+</li>
+</ul>
 </li>
 
  <li><div class="question">Of
@@ -68,14 +69,16 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
      <li><%= f.radio_button :accuracy_recruitable, "High", :onclick=>"$('#accuracy_recruitable').show()" %> too
      high </li></ol>
 </div>
-</li>
 
+<ul>
 <li id="accuracy_recruitable" <% if @estimate.accuracy_recruitable != "Low" && @estimate.accuracy_recruitable != "High"%>style="display: none;"<% end %>>
     <div class="question">What do you think the right
     percentage is?</div>
  <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:right_percentage_recruitable]) %></div>
 <div class="answer">
 <%= f.text_field :right_percentage_recruitable %></div>
+</li>
+</ul>
 </li>
 
 
