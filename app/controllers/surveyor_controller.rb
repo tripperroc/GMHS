@@ -180,9 +180,9 @@ class SurveyorController < ApplicationController
      "Mostly attracted to males",
      "Only attracted to males"]
 
-    @sex_who = ["Only males ",
-     "Only females ",
-     "Both males and females ",
+    @sex_who = ["Only males",
+     "Only females",
+     "Both males and females",
      "Never had sex"]
 
    @sex_category = ["Heterosexual (straight) ",

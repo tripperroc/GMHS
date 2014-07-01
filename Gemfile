@@ -55,6 +55,3 @@ gem 'mysql2'
 gem 'delayed_job_active_record'
 
 gem "daemons"
-
-gem 'jquery-rails'
-gem 'fancybox-rails'

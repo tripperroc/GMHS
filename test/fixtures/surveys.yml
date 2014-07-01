@@ -1,12 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  age: 1
-  birth_sex: MyString
-  gender: MyString
-  race: MyString
-  marital_status: MyString
-  num_children: MyString
+  recruitee_coupon: 814
+  recruiter_coupon: nil
+  age: 18
+  birth_sex: "Male"
+  gender: "Transegener, female-to-male"
+  race: "Asian"
+  marital_status: "Living with someone as if married"
+  email_address: "cmh@cs.rit.edu"
+
+  num_children: 0
   work_more_than_35: false
   work_less_than_35: false
   work_yes_ill: false
@@ -19,22 +23,24 @@ one:
   school_break: false
   homemaker: false
   work_else: false
-  highest_grade_level_completed: MyString
-  income: MyString
+
+  highest_grade_level_completed: "Some college (no degree)"
+  income: "$80,000 to $89,999"
   health_care_provider: MyString
   have_health_plan: false
-  general_health: MyString
-  height_feet: 1
-  height_inches: 1
-  weight: 1
+  general_health: "Doctor assigned by HMO/health care plan"
+  height_feet: 5
+  height_inches: 11
+  weight: 180
   one_drink: false
   twelve_drinks: false
-  drink_frequency_yearly: MyString
-  drink_frequency_daily: MyString
-  binge_drink_yearly: MyString
-  binge_drink_quickly_yearly: MyString
-  smoked_last_year: false
-  smoked_yearly: MyString
+  drink_frequency_yearly: "2 times a week"
+  drink_frequency_daily: 4
+  binge_drink_yearly: "7 to 11 times in the last year"
+  binge_drink_quickly_yearly: "1 or 2 times in the last year"
+  smoked_last_year: "1 to 2 days a week"
+  smoked_yearly: "Once a month or less"
+
   sedatives_last_year: false
   tranquilizers_last_year: false
   painkillers_last_year: false
@@ -44,64 +50,13 @@ one:
   inhalents_last_year: false
   heroin_last_year: false
   drugs_other_last_year: false
+
   ever_self_harm: false
   ever_seriously_ill: false
-  violence_victim_ever: false
+  violence_victim_ever: true
   violence_age_first: 1
   violence_age_most_recent: 1
-  violence_victim_parents: 
+  violence_victim_parents: 2
   violence_ever_neglected: false
   violence_ever_spouse: false
 
-two:
-  age: 1
-  birth_sex: MyString
-  gender: MyString
-  race: MyString
-  marital_status: MyString
-  num_children: MyString
-  work_more_than_35: false
-  work_less_than_35: false
-  work_yes_ill: false
-  work_yes_vacation: false
-  work_yes_absent: false
-  unemployed_looking: false
-  unemployed_not_looking: false
-  retired: false
-  school_fulltime: false
-  school_break: false
-  homemaker: false
-  work_else: false
-  highest_grade_level_completed: MyString
-  income: MyString
-  health_care_provider: MyString
-  have_health_plan: false
-  general_health: MyString
-  height_feet: 1
-  height_inches: 1
-  weight: 1
-  one_drink: false
-  twelve_drinks: false
-  drink_frequency_yearly: MyString
-  drink_frequency_daily: MyString
-  binge_drink_yearly: MyString
-  binge_drink_quickly_yearly: MyString
-  smoked_last_year: false
-  smoked_yearly: MyString
-  sedatives_last_year: false
-  tranquilizers_last_year: false
-  painkillers_last_year: false
-  stimulants_last_year: false
-  marijuana_last_year: false
-  hallucinogens_last_year: false
-  inhalents_last_year: false
-  heroin_last_year: false
-  drugs_other_last_year: false
-  ever_self_harm: false
-  ever_seriously_ill: false
-  violence_victim_ever: false
-  violence_age_first: 1
-  violence_age_most_recent: 1
-  violence_victim_parents: 
-  violence_ever_neglected: false
-  violence_ever_spouse: false
