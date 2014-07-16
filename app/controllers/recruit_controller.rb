@@ -6,6 +6,8 @@ class RecruitController < ApplicationController
     @invitation_url = url_for :controller => 'recruit', :action => 'invitation', :id => session[:recruiter_coupon]
    # @email = session[:email_address]
     estimate = Estimate.find(params[:id])
+    response = Response.find (estimate.response_id)
+    @facebook_response = FacebookResponse.find(response.facebook_response_id)
     @email = estimate.email_address
     @male_facebook_friends = session[:total_male_friends]
     @recruitee_coupon =  session[:recruiter_coupon]

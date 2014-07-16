@@ -16,7 +16,7 @@ survey.
 </div>
   <p style="display: none;"> Your recruit code is: <%= @recruitee_coupon %> </p>
 
-<%= form_for @rsc, :url => { :controller => 'consent', :action => 'update' }, :html=>{:id=>"eligible"}  do |f| %>
+<%= form_for @facebook_response, :url => { :controller => 'consent', :action => 'update' }, :html=>{:id=>"eligible"}  do |f| %>
 <p></p>
 <div style="margin-right:auto;width: 500px;padding:1em; height: 200px; border:1px; border-style: dashed; background-color:#eee;text-color:#000;border-color:#333;font-color:#000">
     <div id = "age" style="margin-left: 0em;">
@@ -53,7 +53,7 @@ survey.
     <div id="sexuality" style="display: none; margin-left: 0em;">
         Which of the categories best describes you?
         <br />
-       <%= f.radio_button :orientation, "Heterosexual", :onclick => "$('#sexuality').hide();$('#ineligible').show(500);" %>
+       <%= f.radio_button :orientation, "Heterosexual", :onclick => "$('#sexuality').hide();$('#facebook').show(500);" %>
        <%= label_tag 'heterosexual', 'Heterosexual (straight)' %>
         <br />
         <%= f.radio_button :orientation, "Gay", :onclick =>"$('#sexuality').hide();$('#facebook').show(500);"%>

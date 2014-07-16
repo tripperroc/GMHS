@@ -30,6 +30,15 @@ private
     auth.from_cookie(cookies)   # Raises FbGraph::Exception if authentication fails
     session[:facebook_access_token]   = auth.access_token.to_s
     session[:facebook_account_number] = auth.user.identifier.to_i
+    logger.debug("#################### AUTHIE #################################")
+    logger.debug("#################### AUTHIE #################################")
+    logger.debug("#################### AUTHIE #################################")
+    logger.debug("#################### AUTHIE #################################")
+    logger.debug(cookies.to_yaml)
+    logger.debug("#################### AUTHIE #################################")
+    logger.debug("#################### AUTHIE #################################")
+    logger.debug("#################### AUTHIE #################################")
+    logger.debug("#################### AUTHIE #################################")
   end
 
   def facebook_access_token

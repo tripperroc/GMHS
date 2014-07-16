@@ -17,7 +17,13 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
    <li><div class="question"> According to Facebook, you
     have <span id="male_facebook_friends"><%=  @facebook_response.facebook_male_friends %></span> Facebook friends
     who are males. Thinking about ONLY these Facebook friends, how many
-    of them would you say identify as gay or bisexual?</div>
+    of them would you say identify as 
+<% if @facebook_response.orientation == "Gay" or @facebook_response.orientation == "Bisexual" %>
+<%= "gay or bisexual?" %>
+<% else %>
+<%= "heterosexual or straight?" %>
+<% end %>
+</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:facebook_gay_friends]) %></div>
 <div class = "answer">
 <%= f.text_field :facebook_gay_friends, :id=>"gay_facebook_men"
@@ -26,7 +32,13 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
 <li><div  class="question">Based on
     your previous answer, that would
     mean <span id="estimated_percent_of_gb_friends">...</span> percent
-    of your Facebook friends are gay or bisexual men.<br /><br />Do
+    of your Facebook friends are 
+<% if @facebook_response.orientation == "Gay" or @facebook_response.orientation == "Bisexual" %>
+<%= "gay or bisexual" %>
+<% else %>
+<%= "heterosexual or straight" %>
+<% end %>
+ men.<br /><br />Do
     you think this percentage is</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:accuracy]) %></div>
 <div class="answer">
@@ -49,8 +61,13 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
  <li><div class="question">Of
     the <span id="recruitable_facebook_friends">
 <%= "0" %></span>
-    Facebook friends who you say identify as gay or
-    bisexual how many of them do you think would take the survey if
+    Facebook friends who you say identify as 
+<% if @facebook_response.orientation == "Gay" or @facebook_response.orientation == "Bisexual" %>
+<%= "gay or bisexual" %>
+<% else %>
+<%= "heterosexual or straight" %>
+<% end %>
+how many of them do you think would take the survey if
     you asked them?</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:facebook_recruitable_friends]) %></div>
 <div class = "answer">
@@ -59,7 +76,13 @@ width:400px;margin-left:auto;margin-right:auto;margin-top:2em;">
 <li><div  class="question">Based on
     your previous answer, that would
     mean <span id="estimated_percent_of_recruitable_friends">...</span> percent
-    of your Facebook friends who identify as gay or bisexual men would
+    of your Facebook friends who identify as 
+<% if @facebook_response.orientation == "Gay" or @facebook_response.orientation == "Bisexual" %>
+<%= "gay or bisexual" %>
+<% else %>
+<%= "heterosexual or straight" %>
+<% end %>
+men would
     take this survey if you asked them.<br /><br />Do
     you think this percentage is</div>
 <div class="errors"><%= render(:partial => 'shared/errors', :object => @estimate.errors[:accuracy_recruitable]) %></div>
