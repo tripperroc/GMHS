@@ -49,6 +49,7 @@ class SurveyorController < ApplicationController
    end
   end 
 
+ 
    def any_errors
      if @response.errors.any?
         logger.debug "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"

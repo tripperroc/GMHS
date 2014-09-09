@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+<% 9.times do |n| %>
+facebook_response_<%= n %>:
+  id: <%= n %>
+  facebook_user_id: <%= n %>
+  recruitee_coupon: 585
+  recruiter_coupon: <%= SecureRandom.hex(16) %>
+  facebook_male_friends: <%= 1 + rand(600) %>
+  eighteen_or_older: t
+  orientation: "Gay"
+  gender: "Male"
+<% end %>
+

@@ -31,7 +31,7 @@ class RecruitController < ApplicationController
 
   def invitation
     session[:recruitee_coupon] = params[:id]
-    redirect_to :controller => 'consent', :action => 'index'
+    redirect_to :controller => 'consent', :action => 'index' #, :id => params[:id]
   end
 
   def email

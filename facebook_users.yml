@@ -1,0 +1,12 @@
+<% 9.times do |n| %>
+facebook_user_<%= n %>:
+  id: <%= n %>
+  so_facebook_user_id: -1
+  facebook_account_number: -1 
+  hashed_facebook_account_number: -1
+  gender: "male"
+  interested_in: ""
+  name: "Foo_" + <%= n.to_s %>
+  relationship_status: ""
+<% end %>
+

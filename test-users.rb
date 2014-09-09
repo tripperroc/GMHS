@@ -31,11 +31,14 @@ out =  Net::HTTP.get(URI(URI.encode("https://graph.facebook.com/179445217929/acc
 
 deletem (out)
 
-ppl = ["Foo1", "Foo2", "Foo3", "Foo4", "Foo5", "Foo6", "Foo7", "Foo8",
+ppl = ["Rod", "Scooter", "Clinton", "Wiener", "Nixon", "Daschle", "Christie", "Spitzer", "Haldeman",
+       "Sly", "Rose", "Freddy", "Cynthia", "Jerry", "Larry", "Greg", "Paul", "Art",
        "Maggie", "Grandpa", "Lisa", "Marge", "Bart", "Homer", "Otto", "Milhaus", "Lenny", "Carl", "Moe", "Barnie", "Ned", "Skinner",
       "Fry", "Leela", "Bender", "Amy", "Conrad", "Farnsworth", "Zoidberg", "Krusty", "Troy", "Patty", "Selma", "Burns", "Smithers"]
 uri = URI ("https://graph.facebook.com/179445217929/accounts/test-users")
-ppl.each {|p| out = Net::HTTP.post_form(uri, 'access_token' => '179445217929|3f881df113dc48cd63b49de1fa1ca39a', 'installed' => 'true', 'name' => p) }
+ppl.each do |p| 
+  out = Net::HTTP.post_form(uri, 'access_token' => '179445217929|3f881df113dc48cd63b49de1fa1ca39a', 'installed' => 'true', 'name' => p) 
+end
 
 friends = {"Maggie" => ["Grandpa", "Lisa", "Marge", "Bart", "Homer", "Ned"], 
   "Grandpa" => ["Lisa", "Marge", "Bart", "Homer"], 
@@ -64,6 +67,7 @@ JSON.parse(out)['data'].each do |u|
   i = URI.parse("https://graph.facebook.com/" + u['id'])
   r =  Net::HTTP.get(i)
   user[JSON.parse(r)["first_name"]] = u 
+  puts JSON.parse(r)["first_name"]
 end
 
 #print friends
@@ -75,4 +79,3 @@ friends.each do |name1 , namelist|
   end
 end
     
-  

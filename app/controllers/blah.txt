@@ -1,0 +1,63 @@
+--- &1 !ruby/object:ActionDispatch::Cookies::CookieJar
+key_generator: !ruby/object:ActiveSupport::CachingKeyGenerator
+  key_generator: !ruby/object:ActiveSupport::KeyGenerator
+    secret: 313e80f8d48ae9849f1dc6bf8619ace57f99604656223a93d39500b73d995bb4e996e28d78499c937bda90da1dec6149c1268979da8476f70c8dacaf827f29eb
+    iterations: 1000
+  cache_keys: !ruby/object:ThreadSafe::Cache
+    backend:
+      encrypted cookie64: !binary |-
+        DQBas5TSSsaQrlVgl3XsnGbUIkzrID9wugpFNLETz9mMTfYozCZWCLi+P3bJ
+        RWZfg1d9D3MqKcA1TGZepxls6w==
+      signed encrypted cookie64: !binary |-
+        Q6/ACGffEdd3Dl23sj58mQSlNcFSU8QAjkFnL+5xLCfr4Wtlt6ozUY5+n/9y
+        DFk2H08ij/G51B/5jRIuBMMfgQ==
+    default_proc: 
+set_cookies:
+  request_method:
+    :value: POST
+    :path: /
+delete_cookies: {}
+host: caribou.rit.edu
+secure: false
+options: &2
+  :signed_cookie_salt: signed cookie
+  :encrypted_cookie_salt: encrypted cookie
+  :encrypted_signed_cookie_salt: signed encrypted cookie
+  :secret_token: 
+  :secret_key_base: 313e80f8d48ae9849f1dc6bf8619ace57f99604656223a93d39500b73d995bb4e996e28d78499c937bda90da1dec6149c1268979da8476f70c8dacaf827f29eb
+  :upgrade_legacy_signed_cookies: false
+cookies:
+  _GMHS_session: bkg0OHFYeEN1cmZIL2tubFkxcUcyQklwRS9QeVhMZlZQemlpZHJJZFhjUlpyUW1JQXVyWGRjN29XRUVFWjNUZzM3ZjZPUDFuT3NMZlFKajJrRUJ0aG40b2k5bnFqd2xuQlFtT3F0SlBtcjA0aUU0UDhoSEtZNkZ0N2w2Z00wZG52bm52L1dXYm5BU2huYktGZmx3RjA4eVZyV1plbTcwcnVNNlNmNkRSZGNPYXZzQ3VLa0xFUDl6d1VONFZDTGxpVmVEeGtjQjRCL1R0M1VWZlRlejVNSkhta2dzZjJ5QkdwTElHMVZvZFhnTT0tLTJpUS9JdkduLzRibnowZWVvbXRjNXc9PQ==--25a196503e39bec2553bf2cbe27cc5ef588f063f
+  fbsr_179445217929: prde7oVD-ytpxxf8SKy_dnVm939VqsGJHC8CEdypSnc.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUNvc0pSTjYwQ2xFVEFRM3hQQ1FmNDNpZHZVcmxWTzQ5TUphQlFkeTMtWTBSRVBYb2ZUVENzaU5CWDZONklwTnBIYjZlX2ZxU1NQcV9vX2VqYXNNb3ZJZzZIVkI5SkFyMTcwN2Nub3NJRUNLcEVYc1JKQ0ItTGMzaWNxTEFpOXlpTGZyRnNSQnZCRWliQ2NpaHRKUzFnaXFnS29IWUpJYVliZzlXcEtHUk5Gb1AxeGRrVmJFWU1uT0lnM2NPSkVZbm9rckc1OWdpTmJYQ1lRcWhoTGExZ3VaenJMZU1QSTl6aWN2Y0N5VGN3VjV1Tml6S2syRlpSRUxZbmZvUF9EMW9XZDM2WjdrRXBUU1ZUYUt1ZEYzLVRKZUVoVURvd1FpTko3Y3hQU1lmMVBqaHQ3ZmNCY2g5OHlWSW5SdXpJb01VN1dXS1oyUFV1SzM3blhMU3lfNVFkZiIsImlzc3VlZF9hdCI6MTQwNjE3MTcwNywidXNlcl9pZCI6IjEwMjkyOTE2NTkifQ
+  __gads: ID=610a85208e0d061a:T=1391404189:S=ALNI_MbJfc4Mo2DvFizRSVWzXvfA9ND9og
+  __unam: 70b9962-14193d9017d-506b2210-2
+  __utma: 242358273.1271703358.1377020864.1405446348.1406057087.118
+  __utmc: '242358273'
+  __utmz: 242358273.1406057087.118.57.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not
+    provided)
+  _ga: GA1.2.1271703358.1377020864
+  FlashCanPlay: '0'
+  s_fid: 463899371BE1B2C8-37A1BFA51CEB697B
+  s_lv: '1389623975070'
+  useFlash: '0'
+  wt3_eid: ;935649882378213|2139140418900675325
+  request_method: POST
+encrypted: &3 !ruby/object:ActionDispatch::Cookies::EncryptedCookieJar
+  parent_jar: *1
+  options: *2
+  encryptor: !ruby/object:ActiveSupport::MessageEncryptor
+    secret: !binary |-
+      DQBas5TSSsaQrlVgl3XsnGbUIkzrID9wugpFNLETz9mMTfYozCZWCLi+P3bJ
+      RWZfg1d9D3MqKcA1TGZepxls6w==
+    sign_secret: !binary |-
+      Q6/ACGffEdd3Dl23sj58mQSlNcFSU8QAjkFnL+5xLCfr4Wtlt6ozUY5+n/9y
+      DFk2H08ij/G51B/5jRIuBMMfgQ==
+    cipher: aes-256-cbc
+    verifier: !ruby/object:ActiveSupport::MessageVerifier
+      secret: !binary |-
+        Q6/ACGffEdd3Dl23sj58mQSlNcFSU8QAjkFnL+5xLCfr4Wtlt6ozUY5+n/9y
+        DFk2H08ij/G51B/5jRIuBMMfgQ==
+      digest: SHA1
+      serializer: !ruby/module 'ActiveSupport::MessageEncryptor::NullSerializer'
+    serializer: !ruby/module 'Marshal'
+signed_or_encrypted: *3

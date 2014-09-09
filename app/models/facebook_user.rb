@@ -20,7 +20,7 @@ class FacebookUser < ActiveRecord::Base
 
 
   def self.find_or_initialize_from_graph_query_fields(graph_query_fields)
-    u = FacebookUser.find_or_initialize_by_facebook_account_number(graph_query_fields["id"])
+    u = FacebookUser.find_or_initialize_by(facebook_account_number: graph_query_fields["id"])
 
     u.gender              ||= graph_query_fields["gender"]
     u.interested_in       ||= graph_query_fields["interested_in"] ? graph_query_fields["interested_in"] .sort.join(',') : nil

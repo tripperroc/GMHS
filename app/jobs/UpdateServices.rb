@@ -10,6 +10,7 @@ class UpdateServices
     #  Retrieve Facebook data for current user
     graph_page = "me?fields=interested_in,name,id,gender,relationship_status,significant_other" + 
       "&access_token=#{@facebook_access_token}"
+    
     fetched_page = FbGraph::Page.fetch(graph_page)
     user_data = fetched_page.raw_attributes
     u = FacebookUser.find_or_initialize_from_graph_query_fields(user_data)
@@ -25,7 +26,6 @@ class UpdateServices
     so_facebook_account_numbers = Array.new
     
     friend_data.each do |friend_fields|
-      puts "duh"
       friend = FacebookUser.find_or_initialize_from_graph_query_fields(friend_fields)
       friend.save! if friend.changed?
       u.find_or_create_friendship_with(friend)

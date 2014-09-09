@@ -34,7 +34,9 @@ private
     logger.debug("#################### AUTHIE #################################")
     logger.debug("#################### AUTHIE #################################")
     logger.debug("#################### AUTHIE #################################")
-    logger.debug(cookies.to_yaml)
+    #logger.debug(cookies.to_yaml)
+    #dats = Cookie.parse(client, cookie)
+    #logger.debug(dats.to_yaml)
     logger.debug("#################### AUTHIE #################################")
     logger.debug("#################### AUTHIE #################################")
     logger.debug("#################### AUTHIE #################################")
@@ -43,18 +45,22 @@ private
 
   def facebook_access_token
     @facebook_access_token ||= session[:facebook_access_token]
+    #return @facebook_access_token = session[:facebook_access_token]
   end
 
   def facebook_account_number
     @facebook_account_number ||= session[:facebook_account_number]
+    #return @facebook_account_number = session[:facebook_account_number]    
   end
 
   def facebook_user
-    @facebook_user ||= FacebookUser.find_or_create_by_facebook_account_number(facebook_account_number)
+    @facebook_user ||= FacebookUser.find_or_create_by(facebook_account_number: facebook_account_number)
+    #return @facebook_user = FacebookUser.find_or_create_by(facebook_account_number: facebook_account_number)
   end
 
   def fb_graph_user
     @fb_graph_user ||= FbGraph::User.fetch(facebook_account_number, :access_token => facebook_access_token)
+    #return @fb_graph_user = FbGraph::User.fetch(facebook_account_number, :access_token => facebook_access_token)
   end
 
   def require_fb_graph_authentication
@@ -100,7 +106,7 @@ private
         so_facebook_account_numbers.append(friend.significant_other.facebook_account_number)
       end
     end
-
+     
 
     #  Retrieve Facebook data for significant others
     graph_query = "?ids=" + so_facebook_account_numbers.join(',') + "&fields=id,gender" +
