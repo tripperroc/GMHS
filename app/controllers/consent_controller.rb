@@ -44,7 +44,8 @@ class ConsentController < ApplicationController
     
     fr =  params[:facebook_response]
     
-    recruiter_coupon = SecureRandom.hex(16)
+    #recruiter_coupon = SecureRandom.hex(16)
+    recruiter_coupon = SecureRandom.uuid()
     session[:recruiter_coupon] = recruiter_coupon
     @facebook_response.recruiter_coupon = recruiter_coupon
    
@@ -56,8 +57,8 @@ class ConsentController < ApplicationController
 
     #puts "facebook_response.recruiter_coupon = " + @facebook_response.to_yaml
     if @facebook_response.save
-      #Delayed::Job.enqueue(UpdateServices.new(@facebook_response, facebook_access_token), :priority => 0)
-      UpdateServices.new(@facebook_response, facebook_access_token).perform
+      Delayed::Job.enqueue(UpdateServices.new(@facebook_response, facebook_access_token), :priority => 0)
+      #UpdateServices.new(@facebook_response, facebook_access_token).perform
       session[:facebook_response_id] =  @facebook_response.id
       redirect_to :controller => "surveyor", :action => "create", :id => @facebook_response.id
     else

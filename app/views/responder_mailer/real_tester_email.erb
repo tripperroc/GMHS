@@ -1,0 +1,100 @@
+<div class="content" id="recruit" >
+
+
+Dear <%= @name.split[0] %> (sorry for the form letter, but there are a lot of
+people helping us, and we are lazy computer people, so we like to automate things),
+
+<p>
+ <b>Thank you</b> for agreeing to help Vince Silenzio, Randall Sell, I (Chris
+ Homan) test our research project. Your assistance will take less than 15
+ minutes and will help us greatly.  Here your instructions.
+</p>
+
+<ol>
+<li><% if @recruiters.empty? %>
+Click on the following link:
+<p>
+<a href ="https://chiron.urmc.rochester.edu/recruit/invitation/814">https://chiron.urmc.rochester.edu/recruit/invitation/814</a>
+</p>
+<% else %>
+You will receive an email from 
+<%= @recruiters.map{ |recruiter| recruiter.to_s } * " or " %>. Click
+on the link in that email.
+<% end %>
+This should open up your web browser and take you to the home page of our survey.
+</li>
+
+<li>
+Click on:  "Click here to take the survey."
+This will take you to the information letter page.
+</li>
+
+<li>
+Scroll down to the bottom of the information letter page. Select "Yes" under "Do you
+agree to these terms and conditions?" (Note that we will NOT pay you
+for helping us out, since you are not actual study participants. But
+next time we see you, the beer or coffee is on us.)
+This will take you to the screening page.
+</li>
+
+<li> You will be asked three screening
+  questions. Please give the following answers, EVEN IF THEY
+  AREN'T TRUE!
+<ol>
+<li>Q: Are you 18 years of age or older? <br/>A: <b>Yes</b></li>
+<li>Q: What is your current gender identity? <br/>A: <b>Male</b></li>
+<li>Q: Which of the categories best describes you? <br/>A: <b><%= @orientation %></b></li>
+</li>
+</ol>
+You will then be asked to click an "I agree to participate" button.
+Please click it.
+<li>
+At this point, one of two things will happen:
+<ol> <li>You will be taken
+to a page that says "We are sorry, but the coupon you are trying to
+use is invalid. You may try again with a valid coupon." If so, please
+send me an email (reply to this message) with the subject "NOT IN."
+and your work is done. Thanks!!
+</li>
+<li> You are taken to the survey. (The first equestion is "What is
+  your age (in years).") In this case continue to the next step.</li>
+</ol>
+</li>
+<li>
+Please fill out all the questions on the first survey 
+  page and press the "Update Response" button at the bottom. YOU DO
+  NOT HAVE TO ANSWER TRUTHFULLY HERE. We are not tracking your answers
+  for this page, so you can say anything you want. You do, however,
+  have to answer all the questions, or you will not be allowed to go
+  to the next page.
+</li>
+<li>For the second page (beginning with question 42),  you can once again
+  answer however you like, EXCEPT FOR QUESTION 47, where you must
+  enter the email address from which you received this message. You will then be taken to the thank
+  you page.
+</li>
+<% unless @who_recruit.empty? %>
+<li>Lastly, you will will receive an email from
+  Vincent_Silenzio@URMC.Rochester.edu. Please forward that email to the following
+<% if @who_recruit.length > 1  %>
+people (don't worry if you do not know them; they will be warned to
+  expect to hear from you):
+<% else %>
+person (don't worry if you do not know this person, they will be
+  warned to expect to hear from you)
+<% end %>
+<ol>
+<% @who_recruit.each do |recruitee| %>
+<li><%= recruitee.email %> (<%= recruitee.name %>)</li>
+<% end %>
+</ol>
+</li>
+<% end %>
+</ol>
+That's it. Thank you so much for your help!!! If you have any
+questions or problems, please let us know. Also, your ability to
+participate on lots of things that can go wrong. Should there be a problem, we may
+email you a second time with different instructions. Thanks again!
+<br>
+Vince, Randall, and Chris
+</div>
