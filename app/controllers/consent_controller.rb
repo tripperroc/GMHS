@@ -45,7 +45,11 @@ class ConsentController < ApplicationController
     fr =  params[:facebook_response]
     
     #recruiter_coupon = SecureRandom.hex(16)
-    recruiter_coupon = SecureRandom.uuid()
+    if @facebook_response.recruiter_coupon?
+	recruiter_coupon = @facebook_response.recruiter_coupon
+    else
+    	recruiter_coupon = SecureRandom.uuid()
+    end
     session[:recruiter_coupon] = recruiter_coupon
     @facebook_response.recruiter_coupon = recruiter_coupon
    

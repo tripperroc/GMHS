@@ -3,16 +3,17 @@ class RecruitController < ApplicationController
   #layout "recruit"
 
   def index   
-    @invitation_url = url_for :controller => 'recruit', :action => 'invitation', :id => session[:recruiter_coupon]
+    #@invitation_url = url_for :controller => 'recruit', :action => 'invitation', :id => session[:recruiter_coupon]
    # @email = session[:email_address]
     estimate = Estimate.find(params[:id])
     response = Response.find (estimate.response_id)
     @facebook_response = FacebookResponse.find(response.facebook_response_id)
+    @invitation_url = url_for :controller => 'recruit', :action => 'invitation', :id => @facebook_response.recruiter_coupon
     @email = estimate.email_address
     @male_facebook_friends = session[:total_male_friends]
-    @recruitee_coupon =  session[:recruiter_coupon]
+    @recruitee_coupon =  @facebook_response.recruiter_coupon
     @gay_facebook_friends = estimate.facebook_gay_friends
-    ResponderMailer.thank_you_email({:invitation_url => @invitation_url, :email_address => @email}).deliver
+    ResponderMailer.thank_you_email({:invitation_url => @invitation_url, :email_address => @email, :orientation => @facebook_response.orientation}).deliver
 
   end
 

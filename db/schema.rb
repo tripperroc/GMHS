@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20131228025916) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "estimates", force: true do |t|
     t.integer  "response_id"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20131228025916) do
     t.datetime "updated_at"
   end
 
-  add_index "facebook_friendships", ["higher_facebook_user_id"], name: "index_facebook_friendships_on_higher_facebook_user_id"
-  add_index "facebook_friendships", ["lower_facebook_user_id"], name: "index_facebook_friendships_on_lower_facebook_user_id"
+  add_index "facebook_friendships", ["higher_facebook_user_id"], name: "index_facebook_friendships_on_higher_facebook_user_id", using: :btree
+  add_index "facebook_friendships", ["lower_facebook_user_id"], name: "index_facebook_friendships_on_lower_facebook_user_id", using: :btree
 
   create_table "facebook_responses", force: true do |t|
     t.integer  "facebook_user_id"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20131228025916) do
 
   create_table "facebook_users", force: true do |t|
     t.integer  "so_facebook_user_id"
-    t.integer  "facebook_account_number"
+    t.integer  "facebook_account_number",        limit: 8
     t.string   "hashed_facebook_account_number"
     t.string   "gender"
     t.string   "interested_in"
@@ -79,12 +79,12 @@ ActiveRecord::Schema.define(version: 20131228025916) do
     t.datetime "updated_at"
   end
 
-  add_index "facebook_users", ["facebook_account_number"], name: "index_facebook_users_on_facebook_account_number"
-  add_index "facebook_users", ["gender"], name: "index_facebook_users_on_gender"
-  add_index "facebook_users", ["hashed_facebook_account_number"], name: "index_facebook_users_on_hashed_facebook_account_number"
-  add_index "facebook_users", ["interested_in"], name: "index_facebook_users_on_interested_in"
-  add_index "facebook_users", ["relationship_status"], name: "index_facebook_users_on_relationship_status"
-  add_index "facebook_users", ["so_facebook_user_id"], name: "index_facebook_users_on_so_facebook_user_id"
+  add_index "facebook_users", ["facebook_account_number"], name: "index_facebook_users_on_facebook_account_number", using: :btree
+  add_index "facebook_users", ["gender"], name: "index_facebook_users_on_gender", using: :btree
+  add_index "facebook_users", ["hashed_facebook_account_number"], name: "index_facebook_users_on_hashed_facebook_account_number", using: :btree
+  add_index "facebook_users", ["interested_in"], name: "index_facebook_users_on_interested_in", using: :btree
+  add_index "facebook_users", ["relationship_status"], name: "index_facebook_users_on_relationship_status", using: :btree
+  add_index "facebook_users", ["so_facebook_user_id"], name: "index_facebook_users_on_so_facebook_user_id", using: :btree
 
   create_table "redssocs_survey_consents", force: true do |t|
     t.boolean  "eighteen_or_older"
@@ -212,7 +212,7 @@ ActiveRecord::Schema.define(version: 20131228025916) do
     t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
 end
