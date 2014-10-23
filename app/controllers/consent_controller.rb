@@ -67,6 +67,7 @@ class ConsentController < ApplicationController
       redirect_to :controller => "surveyor", :action => "create", :id => @facebook_response.id
     else
       puts "WE BE NOT SAVED"
+      puts @facebook_response.errors.messages
       render :invalid
     end
     #puts "FIN"
