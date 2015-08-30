@@ -13,12 +13,12 @@ class FacebookResponse < ActiveRecord::Base
   validate :has_fewer_than_ten_seeds, :has_fewer_than_three_recruits, :recruiter_exists, :shares_sexual_orientation, :still_sampling, on: :create 
   validate :not_recruitment
   
-  @@sample_size = 330
-  @@num_seeds = 10
+  @@sample_size = 350
+  @@num_seeds = 20
 
   def has_fewer_than_ten_seeds
     if recruitee_coupon == "585" && (((orientation == "Gay" || orientation == "Bisexual") && FacebookResponse.where(recruitee_coupon: "585", orientation: "Gay").count +  FacebookResponse.where(recruitee_coupon: "585", orientation: "Bisexual").count >= @@num_seeds) || (orientation == "Heterosexual" && FacebookResponse.where(recruitee_coupon: "585", orientation: "Heterosexual").count >= @@num_seeds))
-      errors.add(:recruitee_coupon, "Cannot have more than ten seeds")
+      errors.add(:recruitee_coupon, "Cannot have more than twenty seeds")
      
     end
   end
@@ -53,7 +53,7 @@ class FacebookResponse < ActiveRecord::Base
     if recruitee_coupon != "814" && recruitee_coupon != "585"
       s = FacebookResponse.find_by(recruiter_coupon: recruitee_coupon)
       if !s.nil? 
-	if (s.orientation == "Heterosexual" && orientation != s.orientation)  || ((s.orientation == "Gay" || s.orientation == "Bisexual") && orientation != "Gay" && orientation != "Bisexual")
+	if (s.orientation == "Heterosexual" && orientation != s.orientation)  || ((s.orientation == "Gay" || s.orientation == "Bisexual") && orientation != "Gay" && orientation != "Bisexual") || s.facebook_male_friends <= 10
 	  puts s.orientation
 	  puts orientation
           errors.add(:orientation, "Incompatible orientations")
@@ -63,7 +63,7 @@ class FacebookResponse < ActiveRecord::Base
   end
 
   def still_sampling
-    if recruitee_coupon != "814" && (((orientation == "Gay" || orientation == "Bisexual") && FacebookResponse.where(orientation: "Gay").count +  FacebookResponse.where(orientation: "Bisexual").count >= @@sample_size) || (orientation == "Heterosexual" && FacebookResponse.where(orientation: "Heterosexual").count >= @@sample_size))
+    if recruitee_coupon != "814" && (((orientation == "Gay" || orientation == "Bisexual") && FacebookResponse.where(orientation: "Gay").count +  FacebookResponse.where(orientation: "Bisexual").count >= 370) || (orientation == "Heterosexual" && FacebookResponse.where(orientation: "Heterosexual").count >= 30))
       errors.add(:recruiter_coupon, "Sample size is reached")
     end
   #validates :email_address, presence: true, email: true

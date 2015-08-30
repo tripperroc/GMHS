@@ -7,11 +7,11 @@
 
 <p>
  <b>Thank you!</b> You have <b>earned
- $5</b> in Amazon.com credit. We will send you an email with
+ $15</b> in Amazon.com credit. We will send you an email with
  instructions on how to use it.
 </p>
 <p><b>We still need your help!</b> We will <b>pay you up to
- $5</b> more for <b>each</b> of up to 3 Facebook friends you recruit to take the survey. They must be 18 years of age or older, male, and identify as 
+ $15</b> more for <b>each</b> of up to 3 Facebook friends you recruit to take the survey. They must be 18 years of age or older, male, and identify as 
 <% if @orientation == "Gay" or @orientation == "Bisexual" %>
 <%= "gay or bisexual." %>
 <% else %>
@@ -32,14 +32,14 @@ I thought you might be interested in this survey that will help to
 <%= "gay or bisexual" %>
 <% else %><%= "heterosexual or straight" %>
 <% end %>
- men. Whoever completes the survey gets $5 in Amazon.com credit, and
+ men. Whoever completes the survey gets $15 in Amazon.com credit, and
  can also invite up to three other
 <% if @orientation == "Gay" or @orientation == "Bisexual" %>
 <%= "gay or bisexual" %>
 <% else %>
 <%= "heterosexual or straight" %>
 <% end %>
- friends and get an additional $5 for each of the three friends who take the survey. To take the survey, please go to:
+ friends and get an additional $15 for each of the first three friends who take the survey. To take the survey, please go to:
 </p>
 <p>
 <a href ="<%= @invitation_url %>"><span style="font-size: 10pt;font-weight:normal;"><%=@invitation_url %></span></a>
@@ -57,6 +57,6 @@ Thank you!
 <a href ="<%= @invitation_url %>"><span style="font-size: 10pt;font-weight:normal;"><%=@invitation_url %></span></a>
 </p>
 <p>
-otherwise, we cannot pay you $5 for your referral.
+otherwise, we cannot pay you $15 for your referral.
 </p>
 </dev>
