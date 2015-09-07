@@ -1,8 +1,8 @@
-<div style="margin-top: 2em;">
-
+<div style="margin-top: 2em; width: 500px;margin-left: auto; margin-right:auto">
+<h2>Screening Question <span id = "qi"></span> of <span id = "qtotal"></span></h2>
 <div class = "instructions" style="margin-bottom: 2em;">
-Please answer the following screening questions to determine whether
-you are eligible.
+Please answer the following questions to determine whether
+you are eligible to take the survey.
 </div>
 <div class = "instructions" style="margin-bottom: 2em;display:none;">
 For <b>10 minutes</b> of your time you can <b>earn $5</b> in
@@ -14,72 +14,72 @@ survey.
 <br />
 
 </div>
-  <p style="display: none;"> Your recruit code is: <%= @recruitee_coupon %> </p>
+  <p > Your recruit code is: <%= @recruitee_coupon %> </p>
+  <p > Your recruiter code is: <%= @facebook_response.recruiter_coupon %> </p>
 
-<%= form_for @facebook_response, :url => { :controller => 'consent', :action => 'update' }, :html=>{:id=>"eligible"}  do |f| %>
+
+<%= form_for @facebook_response, :url => { :controller => 'consent', :action => 'update' }, :html=>{:id=>"edit_screening"} do |f| %>
+ <%= hidden_field_tag 'direction', value = 'F', id: "direction" %>
+
+<%= f.hidden_field :recruiter_coupon %>
 <p></p>
-<div style="margin-right:auto;width: 500px;padding:1em; height: 200px; border:1px; border-style: dashed; background-color:#eee;text-color:#000;border-color:#333;font-color:#000">
-    <div id = "age" style="margin-left: 0em;">
+<!div style="margin-right:auto;width: 500px;padding:1em; height: 200px; border:1px; border-style: dashed; background-color:#eee;text-color:#000;border-color:#333;font-color:#000" class="questions">
+<div style="margin-right:auto;width: 500px;padding:1em; height: 300px; text-color:#000;border-color:#333;font-color:#000" id="questions">
+    <div id = "age"  class="question" style="margin-left: 0em;">
      <%= label_tag 'eighteen_or_older', 'Are you 18 years of age or
      older?' %>
      <br />
-      <%= f.radio_button :eighteen_or_older, true, :onclick => "$('#age').hide();$('#gender').show(500);" %> Yes
+      <%= f.radio_button :eighteen_or_older, true %> Yes
       <br />
-      <%= f.radio_button :eighteen_or_older, false, :onclick => "$('#age').hide(); $('#ineligible').show(500);" %> No
+      <%= f.radio_button :eighteen_or_older, false %> No
       <span style="margin-left: 2em;"></span>
 
      </div>
-  <div id = "ineligible" style="display: none;margin-left: 0em; ">
-      Sorry. You are ineligible to take this survey.
-</div>
-    <div id="gender" style="display: none; margin-left: 0em;">
+  
+    <div id="gender" class="question" style="margin-left: 0em;">
         <%= label_tag 'gender', 'What is your current gender identity?' %>
         <br />
-        <%= f.radio_button :gender, "Male", :onclick => "$('#gender').hide();$('#sexuality').show(500);" %>
+        <%= f.radio_button :gender, "Male" %>
        <%= label_tag 'gender_male', 'Male' %>
         <br />
-        <%= f.radio_button :gender, "Female", :onclick => "$('#gender').hide();$('#ineligible').show(500);"%>
+        <%= f.radio_button :gender, "Female" %>
         <%= label_tag 'gender_female', 'Female' %>
         <br />
-        <%= f.radio_button :gender, "Male-to-Female", :onclick => "$('#gender').hide();$('#ineligible').show(500);"%>
+        <%= f.radio_button :gender, "Male-to-Female"%>
         <%= label_tag 'gender_mtf', ' Transgender, male-to-female' %>
         <br />
-        <%= f.radio_button :gender, "Female-to-Male", :onclick => "$('#gender').hide();$('#sexuality').show(500);"%>
+        <%= f.radio_button :gender, "Female-to-Male"%>
         <%= label_tag 'gender_ftm', ' Transgender, female-to-male' %>
         <br />
-        <%= f.radio_button :gender, "Other", :onclick => "$('#gender').hide();$('#ineligible').show(500);"%>
+        <%= f.radio_button :gender, "Other"%>
         <%= label_tag 'gender_other', 'Other' %>
 </div>
-    <div id="sexuality" style="display: none; margin-left: 0em;">
+    <div id="sexuality"  class="question" style="margin-left: 0em;">
         Which of the categories best describes you?
         <br />
-       <%= f.radio_button :orientation, "Heterosexual", :onclick => "$('#sexuality').hide();$('#facebook').show(500);" %>
+       <%= f.radio_button :orientation, "Heterosexual"%>
        <%= label_tag 'heterosexual', 'Heterosexual (straight)' %>
         <br />
-        <%= f.radio_button :orientation, "Gay", :onclick =>"$('#sexuality').hide();$('#facebook').show(500);"%>
+        <%= f.radio_button :orientation, "Gay"%>
         <%= label_tag 'gay', 'Gay' %>
         <br />
-        <%= f.radio_button :orientation, "Bisexual", :onclick => "$('#sexuality').hide();$('#facebook').show(500);"%>
+        <%= f.radio_button :orientation, "Bisexual"%>
         <%= label_tag 'bisexual', 'Bisexual' %>
         <br />
-       <%= f.radio_button :orientation, "Not-sure", :onclick => "$('#sexuality').hide();$('#ineligible').show(500);" %>
+       <%= f.radio_button :orientation, "Not-sure" %>
         <%= label_tag 'Other', "Not sure" %>
       </p>
     </div>
-        <div id = "facebook" style="display: none; margin-left: 0em;">
-    Do you have a Facebook account? If so, you are eligible to take
-    the survey! Click on the button to get started. 
-  <p>
-       <fb:login-button 
-        show-faces="false"
-        scope="user_relationships,user_relationship_details"
-        onlogin="$('#eligible').submit()"
-        I agree to participate
-      </fb:login-button>
-<div style="margin-top: 2em">We use a Facebook app in order to make
+        <div id = "facebook"  class="question" style="margin-left: 0em;">
+          Since we need your help recruiting others, we need some contact information from you. What is your email address?
+          <%= f.text_field :email_address %>
+    
+  <div style="margin-top: 2em">We use a Facebook app in order to make
   sure we do not get duplicate surveys from you, and to make sure you
   receive your payment information at the end of the survey. You can
   delete the Facebook app (called ReDSSoCS) at any time after the survey is done and you've received your payment.</div>
+       
+
 </p>
 
      </div>
@@ -88,3 +88,82 @@ survey.
   <% end %>
   
 </div>
+<div>
+
+<div id ="faceblogin">
+  <fb:login-button 
+        size = "xlarge"
+        show-faces="false"
+        scope="user_relationships,user_relationship_details"
+        onlogin="$('#edit_screening').submit()">
+        I agree 
+      </fb:login-button>
+</div>
+</div>
+
+<script>
+var current = 0;
+function initbuttons () {
+  $("#faceblogin")[0].hidden = true;
+ var questions = $("#questions").children();
+ <% if @back %>
+current = $("#questions").children().length - 1;
+<% end %>
+
+ for (i = 0; i < questions.length; i++) {
+  questions[i].hidden = true  ;
+ }
+ if (current == $("#questions").children().length - 1) {
+        $("#next")[0].hidden = true;
+        $("#faceblogin")[0].hidden = false;
+  }
+  else {
+    questions[current].hidden = false;
+  }
+
+$("#qtotal").text(questions.length-1);
+
+$("#qi").text(current + 1);
+
+ $("#next").bind ({
+  click: function (event) {
+    if (current < $("#questions").children().length - 1) {
+      questions[current].hidden = true;
+      current +=1;
+      questions[current].hidden = false;
+      if (current == $("#questions").children().length - 1) {
+        $("#next")[0].hidden = true;
+        $("#faceblogin")[0].hidden = false;
+      }
+      else {
+        ("#next")[0].value = "NEXT"
+      }
+    }
+    else {
+      $("#edit_screening").submit();
+    }
+    $("#qi").text(current);
+  }
+ });
+
+ $("#back").bind ({
+  click: function (event) {
+    questions[current].hidden = true;
+    if (current > 0) {
+      current = current - 1;
+    } 
+    questions[current].hidden = false;
+    if (current == 0) {
+      $('#direction').val ('B');
+      $("#edit_screening").submit();   
+    }
+    $("#qi").text(current);
+    $("#faceblogin")[0].hidden = true;
+    $("#next")[0].hidden = false;
+  }
+ });}
+ window.onload = initbuttons;
+
+
+</script>
+

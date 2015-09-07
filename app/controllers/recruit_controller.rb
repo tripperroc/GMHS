@@ -3,18 +3,21 @@ class RecruitController < ApplicationController
   #layout "recruit"
 
   def index   
-    #@invitation_url = url_for :controller => 'recruit', :action => 'invitation', :id => session[:recruiter_coupon]
-   # @email = session[:email_address]
-    estimate = Estimate.find(params[:id])
-    response = Response.find (estimate.response_id)
+   
+    #estimate = Estimate.find(params[:id])
+    #response = Response.find (estimate.response_id)
+    response = Response.find (params[:id])
     @facebook_response = FacebookResponse.find(response.facebook_response_id)
     @invitation_url = url_for :controller => 'recruit', :action => 'invitation', :id => @facebook_response.recruiter_coupon
-    @email = estimate.email_address
-    @male_facebook_friends = session[:total_male_friends]
+    @email = @facebook_response.email_address
+    #@male_facebook_friends = session[:total_male_friends]
     @recruitee_coupon =  @facebook_response.recruiter_coupon
-    @gay_facebook_friends = estimate.facebook_gay_friends
-    ResponderMailer.thank_you_email({:invitation_url => @invitation_url, :email_address => @email, :orientation => @facebook_response.orientation}).deliver
-
+    #@gay_facebook_friends = estimate.facebook_gay_friends
+    if (params[:direction] && params[:direction] == "B")
+      redirect_to :controller => :surveyor, :action => :create, id: @facebook_response.id
+    else
+      ResponderMailer.thank_you_email({:invitation_url => @invitation_url, :email_address => @email, :orientation => @facebook_response.orientation}).deliver
+    end
   end
 
   def loginvitation 

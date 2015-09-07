@@ -8,6 +8,32 @@
   <%= stylesheet_link_tag    "facebook", :media => "all" %>
 
   <style>
+  h1 { font-size:34px;}
+  .button {
+   background: #f48d2b;
+   padding: 9.5px 21px;
+   border: none;
+   outline: none;
+   color: white;
+   font-size: 20px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+
+#back {  position:absolute;
+    
+    left:20%;
+ }
+
+ #next {  position:absolute;
+    
+    right:20%;
+ }
    body, html {
      margin: 0;
      padding: 0;
@@ -73,9 +99,18 @@
 <%= render "shared/load_facebook_sdk" %>
 
 <div style="width: 600px; margin-left: auto; margin-right:auto;">
+<div style="height: 450px; width = 700px;">
 <%= yield %>
+</div>
+<div>
 
-<div style="margin-top: 3em; font-size:10pt;"><hr/> Supported in part by
+<input id="back" type="button" class="button" value="BACK"/>
+
+<input id="next" type="button" class="button" value="SEE HOW"/>
+
+</div>
+
+<div style="margin-top: 10em; font-size:10pt;"><hr/> Supported in part by
   National Science Foundation Award SES-1111016. This survey is
   conducted by researchers at The University of Rochester, Rochester
   Institute of Technology, and Drexel University. For more details,

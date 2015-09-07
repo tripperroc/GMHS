@@ -1,10 +1,110 @@
-<div style="margin-top: 2em;">
+<% if @back %>
+Current: <%= @back %>
+<% end %>
 
-<p><%= link_to 'Click here to take the survey', action: "info_letter" %></p>
-<p>Make an important contribution to 
-    men's health!</p>
-<p>Recruit your friends</p>
- <p>Earn up to $60</p>
-<p>
-If you're male, 18 years or older, and have an active Facebook account, you may be eligible to take the survey.</p>
+<%= form_for @front , :url => {:action => "info_letter"} do |f| %>
+<%= f.hidden_field :recruitee_coupon %>
+<div id = "pages" style="width:700px; height: 425px">
+<div  class="page" id="first">
+    <h1>DOES YOUR SEXUALITY AFFECT YOUR HEALTH?</h1>
+
+
+    <%= image_tag "health-disp.png", height: 'auto', width: '200'%>
+
+    <h2>You and your friends can help answer this important question!</h2>
+
+    <%= image_tag "people.png", height: 'auto', width: '300' %>
+
+    
 </div>
+<div class="page"  id = "how_basic">
+  <h2>Take our online survey</h2>
+ 
+  <table  width="300px"><tr><td><%= image_tag "guy-on-chair.png" , height: 'auto', width: '180'%> </td><td>
+  <div>You get $10 in Amazon.com credit.</div></td></tr></table> 
+
+<h2>Convince your friends to take the survey</h2>
+
+<table width="500px"><tr><td><%= image_tag "people.png", height: 'auto', width: '300' %> </td><td>They get $10 in Amazon.com credit. <b>You get an additional $10 in Amazon credit for each friend (up to five) you recruit.</b></td></tr></table> 
+
+
+  </div>
+
+<div class="page"  id = "how_recruit">
+
+<h2>After you take the survey, we give you a secret http web link, known only to you and us<h2>
+
+  <%= image_tag "laptop.png", height: 'auto', width: '350' %>  
+
+  <h2>You share this secret link with your friends, however you like ...<h2>
+
+  <table width="700px"><tr><td>
+   <div> … by email </div></td><td><%= image_tag "laptolap.png", height: 'auto', width: '150' %> </td><td></td><td>… by cell</td><td><%= image_tag "sftosf.png", height: 'auto', width: '150' %> </td><td></td><td> … or in person </td><td><%= image_tag "inperson.png", height: 'auto', width: '150' %> </td></tr></table>
+
+
+<h2>You get credit when your friends use the secret link to take the survey</h2>
+
+
+</div>
+
+ </div>
+
+<br>
+
+
+<% end %>
+<script>
+var current = 0;
+
+function initbuttons () {
+var messages=["SEE HOW", "SEE HOW", "TAKE THE SURVEY"];
+ var questions = $("#pages").children();
+
+ <% if @back %>
+current = $("#pages").children().length - 1;
+<% else %>
+  $("#back")[0].hidden = true;
+<% end %>
+
+ for (i = 0; i < questions.length; i++) {
+  questions[i].hidden = true  ;
+ }
+ questions[current].hidden = false;
+
+
+
+ $("#next").bind ({
+  click: function (event) {
+    if (current < $("#pages").children().length - 1) {
+      questions[current].hidden = true;
+      current +=1;
+      questions[current].hidden = false;
+      $("#back")[0].hidden = false;
+    
+        $("#next")[0].value = messages[current];
+      
+    }
+    else {
+      $(".edit_front").submit();
+    }
+    
+  }
+ });
+
+ $("#back").bind ({
+  click: function (event) {
+    questions[current].hidden = true;
+    if (current > 0) {
+      current = current - 1;
+    } 
+    questions[current].hidden = false;
+    if (current == 0) {
+       $("#back")[0].hidden = true;
+    }
+    
+  }
+ });}
+ window.onload = initbuttons;
+
+</script>
+

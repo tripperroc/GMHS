@@ -11,3 +11,29 @@
  *= require_self
  *= require_tree .
  */
+
+.button {
+   background: #f48d2b;
+   padding: 9.5px 21px;
+   border: none;
+   outline: none;
+   color: white;
+   font-size: 20px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+
+#back {  position:absolute;
+    
+    left:20%;
+ }
+
+ #next {  position:absolute;
+    
+    right:20%;
+ }

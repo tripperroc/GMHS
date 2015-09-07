@@ -1,31 +1,22 @@
 # -*- coding: utf-8 -*-
 class Response < ActiveRecord::Base
-  #belongs_to :facebook_user
-  has_one :estimate
-  has_one :facebook_response
-
-  validates :twelve_drinks, :drink_frequency_yearly, :drink_frequency_daily, :binge_drink_yearly, presence: true, if: "one_drink == 'Yes'", on: :update
-
-   validates :drink_frequency_daily,  numericality: { only_integer: true, greater_than_or_equal_to: 0 }, if: "one_drink == 'Yes'", on: :update
-
-  validates :binge_drink_quickly_yearly, presence: true, if: "one_drink == 'Yes' && !(binge_drink_yearly == 'Never in the last year')", on: :update
-
-  validates :smoked_yearly, presence: true, if: "smoked_last_year == 'Yes'", on: :update
-
-#  :violence_age_first, :violence_age_most_recent,
-
- 
-
-  #validates :ever_suicidal, presence: true, if: "ever_suicidal == 'Yes'", on: :update
-
-
   
-  #validates :age, :birth_sex, presence: true, on: :update
-  validates :age, :birth_sex, :gender, :marital_status, :latino, :num_children, :highest_grade_level_completed, :income, :health_care_provider, :have_health_plan, :general_health, :height_feet, :height_inches, :weight, :one_drink, :smoked_last_year, :ever_self_harm, :ever_seriously_ill, :violence_victim_ever, :care_swear, :care_fear, :care_harm,:sex_feelings, :sex_who, :sex_category, :discrimination_insurance, :discrimination_how_treated, :discrimination_public, :discrimination_job, :discrimination_bullied, :ever_aids, :ever_suicidal, :frequency_facebook, :frequency_twitter, :frequency_google_plus, :frequency_myspace, :frequency_linkedin, :frequency_other, :frequency_tumblr, :frequency_trevorspace, :frequency_grindr, :frequency_scruff, :frequency_jackd,  :frequency_hornet,  :frequency_yelp,  :frequency_foursquare, :frequency_flickr,  :frequency_youtube,  :frequency_pinterest, :frequency_instagram, :no_days, :violence_victim_parents, :violence_ever_neglected, :violence_ever_spouse, :violence_ever_other, :violence_ever_mugged, :how_satisfied, :violence_victim_parents, :violence_ever_neglected, :violence_ever_spouse, :violence_ever_other, :violence_ever_mugged, presence: true, on: :update
+  #has_one :estimate
+  #has_one :facebook_response
 
-  validates :age, :num_children, :height_feet, :height_inches, :weight,:no_days, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, on: :update
-  validate :checkboxes, on: :update
-                                                                                                                          validates :height_inches, numericality: {less_than: 12}, on: :update
+  #validates :twelve_drinks, :drink_frequency_yearly, :drink_frequency_daily, :binge_drink_yearly, presence: true, if: "one_drink == 'Yes'", on: :update
+
+   #validates :drink_frequency_daily,  numericality: { only_integer: true, greater_than_or_equal_to: 0 }, if: "one_drink == 'Yes'", on: :update
+
+  #validates :binge_drink_quickly_yearly, presence: true, if: "one_drink == 'Yes' && !(binge_drink_yearly == 'Never in the last year')", on: :update
+
+  #validates :smoked_yearly, presence: true, if: "smoked_last_year == 'Yes'", on: :update
+
+# validates :age, :birth_sex, :gender, :marital_status, :latino, :num_children, :highest_grade_level_completed, :income, :health_care_provider, :have_health_plan, :general_health, :height_feet, :height_inches, :weight, :one_drink, :smoked_last_year, :ever_self_harm, :ever_seriously_ill, :violence_victim_ever, :care_swear, :care_fear, :care_harm,:sex_feelings, :sex_who, :sex_category, :discrimination_insurance, :discrimination_how_treated, :discrimination_public, :discrimination_job, :discrimination_bullied, :ever_aids, :ever_suicidal, :frequency_facebook, :frequency_twitter, :frequency_google_plus, :frequency_myspace, :frequency_linkedin, :frequency_other, :frequency_tumblr, :frequency_trevorspace, :frequency_grindr, :frequency_scruff, :frequency_jackd,  :frequency_hornet,  :frequency_yelp,  :frequency_foursquare, :frequency_flickr,  :frequency_youtube,  :frequency_pinterest, :frequency_instagram, :no_days, :violence_victim_parents, :violence_ever_neglected, :violence_ever_spouse, :violence_ever_other, :violence_ever_mugged, :how_satisfied, :violence_victim_parents, :violence_ever_neglected, :violence_ever_spouse, :violence_ever_other, :violence_ever_mugged, presence: true, on: :update
+
+ # validates :age, :num_children, :height_feet, :height_inches, :weight,:no_days, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, on: :update
+  #validate :checkboxes, on: :update
+ #   validates :height_inches, numericality: {less_than: 12}, on: :update
 
   def checkboxes
    boxes = [[:ethnicity, [[namerican,:namerican], 

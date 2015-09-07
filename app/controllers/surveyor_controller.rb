@@ -41,10 +41,14 @@ class SurveyorController < ApplicationController
   def update
    params.require(:response).permit! 
    @response = Response.find(params[:id])
-   if @response.update(params[:response]) 
-     redirect_to :controller => "estimate", :action => "create", :id => params[:id]
+   ans = @response.update(params[:response]) 
+   if (params[:direction] && params[:direction] == "B")
+      redirect_to :controller => :consent, :action => :screening, id: @recruitee_coupon, back: "yes"
+   elsif ans
+     #redirect_to :controller => "estimate", :action => "create", :id => params[:id]
+     redirect_to :controller => "recruit", :action => "index", :id => params[:id]
    else
-     answers
+     #answers
      render :create 
    end
   end 

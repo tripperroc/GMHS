@@ -1,11 +1,37 @@
 class ConsentController < ApplicationController
   def info_letter
+    @recruitee_coupon = session[:recruitee_coupon]
+
   end
 
   def screening
+    logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+    logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+    logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+    logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+    logger.debug params
     @facebook_response = FacebookResponse.new
+    front = Front.create
+    @facebook_response.recruiter_coupon = front.id.to_s
     @recruitee_coupon = session[:recruitee_coupon]
-  end
+
+   if (params[:direction] && params[:direction] == "B")
+      redirect_to :action => :index, id: @recruitee_coupon, :back => "yes"
+    end
+    if (params[:back])
+      @back = "yes";
+    end
+ end
+
+  def index
+     @front = Front.new
+    @front.recruitee_coupon = params[:id]
+    @front.save
+    session[:front_id] = @front.id
+    if params[:back]
+      @back = "yes"
+    end
+ end
 
   def not_eligible
   end
@@ -25,8 +51,14 @@ class ConsentController < ApplicationController
   end
 
   def update
-    authenticate_with_fb_graph
-    check
+    if (params[:direction] && params[:direction] == "B")
+      FacebookResponse.find_or_initialize_by(facebook_user_id: facebook_user.id)
+      redirect_to :action => :info_letter, id: @recruitee_coupon
+
+    else
+      authenticate_with_fb_graph
+      check
+    end
   end
 
   # For integration test purposes with Facebook test user accounts who have already approved the app
@@ -44,11 +76,13 @@ class ConsentController < ApplicationController
     
     fr =  params[:facebook_response]
     
+    
+
     #recruiter_coupon = SecureRandom.hex(16)
     if @facebook_response.recruiter_coupon?
-	recruiter_coupon = @facebook_response.recruiter_coupon
+	   recruiter_coupon = @facebook_response.recruiter_coupon
     else
-    	recruiter_coupon = SecureRandom.uuid()
+    	recruiter_coupon = fr[:recruiter_coupon]
     end
     session[:recruiter_coupon] = recruiter_coupon
     @facebook_response.recruiter_coupon = recruiter_coupon
@@ -58,6 +92,7 @@ class ConsentController < ApplicationController
     @facebook_response.gender = fr[:gender]
     @facebook_response.orientation = fr[:orientation]
     @facebook_response.recruitee_coupon = session[:recruitee_coupon]
+    @facebook_response.email_address = fr[:email_address]
 
     #puts "facebook_response.recruiter_coupon = " + @facebook_response.to_yaml
     if @facebook_response.save

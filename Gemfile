@@ -42,7 +42,7 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-gem 'debugger', group: [:development, :test]
+#gem 'debugger', group: [:development, :test]
 
 gem 'facebooker2'
 gem 'fb_graph'
@@ -50,7 +50,7 @@ gem 'fb_graph'
 
 gem 'i18n', github: 'svenfuchs/i18n'
 
-gem 'mysql2'
+#gem 'mysql2'
 
 gem 'delayed_job_active_record'
 

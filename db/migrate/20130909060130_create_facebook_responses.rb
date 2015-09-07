@@ -11,7 +11,7 @@ class CreateFacebookResponses < ActiveRecord::Migration
       t.boolean :eighteen_or_older
       t.string :orientation
       t.string :gender
-
+      t.string :email_address
       t.integer :facebook_male_friends
 
       t.timestamps
