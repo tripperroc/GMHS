@@ -90,7 +90,7 @@ survey.
 </div>
 <div>
 
-<div id ="faceblogin">
+<div id ="faceblogin" style="display: none;">
   <fb:login-button 
         size = "xlarge"
         show-faces="false"
@@ -110,15 +110,13 @@ function initbuttons () {
 current = $("#questions").children().length - 1;
 <% end %>
 
- for (i = 0; i < questions.length; i++) {
-  questions[i].hidden = true  ;
- }
+ 
  if (current == $("#questions").children().length - 1) {
-        $("#next")[0].hidden = true;
-        $("#faceblogin")[0].hidden = false;
+        $($("#next")[0]).hide();
+        $($("#faceblogin")[0]).show();
   }
   else {
-    questions[current].hidden = false;
+    $(questions[current]).show();
   }
 
 $("#qtotal").text(questions.length-1);
@@ -128,12 +126,12 @@ $("#qi").text(current + 1);
  $("#next").bind ({
   click: function (event) {
     if (current < $("#questions").children().length - 1) {
-      questions[current].hidden = true;
+      $(questions[current]).hide();
       current +=1;
-      questions[current].hidden = false;
+      $(questions[current]).show();
       if (current == $("#questions").children().length - 1) {
-        $("#next")[0].hidden = true;
-        $("#faceblogin")[0].hidden = false;
+        $($("#next")[0]).hide();
+        $($("#faceblogin")[0]).show();
       }
       else {
         ("#next")[0].value = "NEXT"
@@ -148,18 +146,18 @@ $("#qi").text(current + 1);
 
  $("#back").bind ({
   click: function (event) {
-    questions[current].hidden = true;
+    $(questions[current]).hide();
     if (current > 0) {
       current = current - 1;
     } 
-    questions[current].hidden = false;
+    $(questions[current]).show();
     if (current == 0) {
       $('#direction').val ('B');
       $("#edit_screening").submit();   
     }
     $("#qi").text(current);
-    $("#faceblogin")[0].hidden = true;
-    $("#next")[0].hidden = false;
+    $("#faceblogin").hide();
+    $("#next").show();
   }
  });}
  window.onload = initbuttons;

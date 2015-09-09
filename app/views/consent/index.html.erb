@@ -1,5 +1,11 @@
 <% if @back %>
 Current: <%= @back %>
+<% else %>
+<style>
+#back {
+  display: none;
+}
+</style>
 <% end %>
 
 <%= form_for @front , :url => {:action => "info_letter"} do |f| %>
@@ -55,31 +61,27 @@ Current: <%= @back %>
 <% end %>
 <script>
 var current = 0;
-
+var questions ;
 function initbuttons () {
 var messages=["SEE HOW", "SEE HOW", "TAKE THE SURVEY"];
- var questions = $("#pages").children();
+ questions = $("#pages").children();
 
  <% if @back %>
 current = $("#pages").children().length - 1;
-<% else %>
-  $("#back")[0].hidden = true;
 <% end %>
 
- for (i = 0; i < questions.length; i++) {
-  questions[i].hidden = true  ;
- }
- questions[current].hidden = false;
+
+ $(questions[current]).show();
 
 
 
  $("#next").bind ({
   click: function (event) {
     if (current < $("#pages").children().length - 1) {
-      questions[current].hidden = true;
+      $(questions[current]).hide();
       current +=1;
-      questions[current].hidden = false;
-      $("#back")[0].hidden = false;
+      $(questions[current]).show();
+      $($("#back")[0]).show();
     
         $("#next")[0].value = messages[current];
       
@@ -93,13 +95,13 @@ current = $("#pages").children().length - 1;
 
  $("#back").bind ({
   click: function (event) {
-    questions[current].hidden = true;
+    $(questions[current]).hide();
     if (current > 0) {
       current = current - 1;
     } 
-    questions[current].hidden = false;
+    $(questions[current]).show();
     if (current == 0) {
-       $("#back")[0].hidden = true;
+       $($("#back")[0]).hide();
     }
     
   }
