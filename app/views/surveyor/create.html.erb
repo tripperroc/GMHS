@@ -70,10 +70,8 @@ In your ENTIRE life did you EVER attempt suicide?
 function initbuttons () {
 
  var questions = $("#questions").children();
- for (i = 0; i < questions.length; i++) {
-  questions[i].hidden = true  ;
- }
- questions[0].hidden = false;
+ 
+ $(questions[0]).show();
 
 $("#qtotal").text(questions.length-1);
 var current = 0;
@@ -82,9 +80,9 @@ $("#qi").text(current);
  $("#next").bind ({
   click: function (event) {
     if (current < $("#questions").children().length - 1) {
-      questions[current].hidden = true;
+      $(questions[current]).hide();
       current +=1;
-      questions[current].hidden = false;
+      $(questions[current]).show();
       
       if (current == $("#questions").children().length - 1) {
         $("#next")[0].value = "Finish Survey";
@@ -99,7 +97,7 @@ $("#qi").text(current);
 
  $("#back").bind ({
   click: function (event) {
-    questions[current].hidden = true;
+    $(questions[current]).hide();
     if (current > 0) {
       current = current - 1;
     } 
@@ -108,7 +106,7 @@ $("#qi").text(current);
         $("#edit_survey_response").submit();
     }
 
-    questions[current].hidden = false;
+    $(questions[current]).show();
     
     $("#qi").text(current);
   }

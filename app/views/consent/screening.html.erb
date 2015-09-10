@@ -14,9 +14,7 @@ survey.
 <br />
 
 </div>
-  <p > Your recruit code is: <%= @recruitee_coupon %> </p>
-  <p > Your recruiter code is: <%= @facebook_response.recruiter_coupon %> </p>
-
+  
 
 <%= form_for @facebook_response, :url => { :controller => 'consent', :action => 'update' }, :html=>{:id=>"edit_screening"} do |f| %>
  <%= hidden_field_tag 'direction', value = 'F', id: "direction" %>
@@ -89,22 +87,26 @@ survey.
   
 </div>
 <div>
-
 <div id ="faceblogin" style="display: none;">
   <fb:login-button 
         size = "xlarge"
         show-faces="false"
         scope="user_relationships,user_relationship_details"
-        onlogin="$('#edit_screening').submit()">
+        onlogin="$(\'#edit_screening\').submit()">
         I agree 
       </fb:login-button>
 </div>
+
 </div>
 
 <script>
 var current = 0;
+
+  
 function initbuttons () {
-  $("#faceblogin")[0].hidden = true;
+   
+  
+  $("#faceblogin").appendTo("#navigation");
  var questions = $("#questions").children();
  <% if @back %>
 current = $("#questions").children().length - 1;

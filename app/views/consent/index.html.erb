@@ -1,12 +1,4 @@
-<% if @back %>
-Current: <%= @back %>
-<% else %>
-<style>
-#back {
-  display: none;
-}
-</style>
-<% end %>
+
 
 <%= form_for @front , :url => {:action => "info_letter"} do |f| %>
 <%= f.hidden_field :recruitee_coupon %>
