@@ -21,7 +21,7 @@ GMHS::Application.configure do
    :port => 587,
    :domain => 'cs.rit.edu',
    :user_name => 'cmh',
-   :password =>  'J6amesSupertown',
+   :password =>  'CrazyL4akewOod',
    :authentication => 'plain',
    :enable_starttls_auto => true
   }
