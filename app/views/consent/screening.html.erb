@@ -99,10 +99,11 @@ survey.
 
 </div>
 
+
 <script>
 var current = 0;
-
-  
+//var dialog = $("#dialog").dialog({ autoOpen: true });  
+ //jQuery(document).ready(function($) { $( "#dialog" ).dialog(); }); 
 function initbuttons () {
    
   
@@ -127,20 +128,26 @@ $("#qi").text(current + 1);
 
  $("#next").bind ({
   click: function (event) {
-    if (current < $("#questions").children().length - 1) {
-      $(questions[current]).hide();
-      current +=1;
-      $(questions[current]).show();
-      if (current == $("#questions").children().length - 1) {
-        $($("#next")[0]).hide();
-        $($("#faceblogin")[0]).show();
+    if ($($("#questions").children()[current]).find("input:checked").val()) {
+      if (current < $("#questions").children().length - 1) {
+        $(questions[current]).hide();
+        current +=1;
+        $(questions[current]).show();
+        if (current == $("#questions").children().length - 1) {
+          $($("#next")[0]).hide();
+          $($("#faceblogin")[0]).show();
+        }
+        else {
+          ("#next")[0].value = "NEXT"
+        }
       }
       else {
-        ("#next")[0].value = "NEXT"
+        $("#edit_screening").submit();
       }
     }
     else {
-      $("#edit_screening").submit();
+      alert ("Please enter a value.")
+      //dialog.dialog();
     }
     $("#qi").text(current);
   }
