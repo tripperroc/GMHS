@@ -25,7 +25,7 @@ class SurveyorController < ApplicationController
       
 
       @response = Response.find_or_create_by(facebook_response_id: params[:id])
-      
+      @facebook_response = FacebookResponse.find(params[:id])
       logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
       logger.debug "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
       logger.debug params

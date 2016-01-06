@@ -5,11 +5,7 @@ class ConsentController < ApplicationController
   end
 
   def screening
-    logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
-    logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
-    logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
-    logger.debug "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
-    logger.debug params
+
     @facebook_response = FacebookResponse.new
     front = Front.create
     @facebook_response.recruiter_coupon = front.id.to_s
@@ -95,7 +91,7 @@ class ConsentController < ApplicationController
     @facebook_response.email_address = fr[:email_address]
 
     #puts "facebook_response.recruiter_coupon = " + @facebook_response.to_yaml
-    if @facebook_response.save
+    if @facebook_response.save && @facebook_response.gender == "Male" && @facebook_response.eighteen_or_older
       Delayed::Job.enqueue(UpdateServices.new(@facebook_response, facebook_access_token), :priority => 0)
       #UpdateServices.new(@facebook_response, facebook_access_token).perform
       session[:facebook_response_id] =  @facebook_response.id

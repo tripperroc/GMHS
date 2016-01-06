@@ -12,29 +12,36 @@
 <div class="question">
   Which of the following best represents how you think of yourself?
 
-  <%= render( :partial => 'radiobuttons', :object => ["Gay or lesbian", "Straight", "that is not gay or lesbian", "Bisexual", "Something else", "I don’t know the answer", "Refused"], :locals=> {:f => f, :name => :sexual_orientation}) %>
+  <%= render( :partial => 'radiobuttons', :object => ["Gay or lesbian", "Straight, that is not gay or lesbian", "Bisexual", "Something else", "I don’t know the answer"], :locals=> {:f => f, :name => :sexual_orientation}) %>
 </div>
 
 <div class="question">
   Do you consider yourself to be Hispanic or Latino? 
 
-  <%= render( :partial => 'radiobuttons', :object => [" Yes", "No",  "Something else", "I don’t know the answer", "Refused"], :locals=> {:f => f, :name => :hispanic}) %>
+  <%= render( :partial => 'radiobuttons', :object => [" Yes", "No",  "Don’t know "], :locals=> {:f => f, :name => :hispanic}) %>
+</div>
+
+<div class="question">
+  What race or races do you consider yourself to be?  Please select 1 or more of these categories. 
+
+<%= render( :partial => 'checkboxes', :object => [[:white,"White"],[:black,"Black or African American"],[:native, "American Indian or Alaska Native"],[:asian, "Asian"], [:none,"None of the Above"]], :locals=> {:f => f}) %>
+</div
 </div>
 
 <div class="question">DURING THE PAST 12 MONTHS, have you delayed seeking medical care because of worry about the cost? 
-<%= render( :partial => 'radiobuttons', :object => ["Yes", "No", "Refused", "Don’t know"], :locals=> {:f => f, :name => :healthcare_delayed}) %>
+<%= render( :partial => 'radiobuttons', :object => ["Yes", "No", "Don’t know"], :locals=> {:f => f, :name => :healthcare_delayed}) %>
 </div>
 
 <div class = "question">
 Have you ever smoked at least 100 cigarettes in your ENTIRE LIFE? 
 
-<%= render( :partial => 'radiobuttons', :object => ["Yes", "No", "Refused", "Don’t know"], :locals=> {:f => f, :name => :hundred_cigarettes}) %>
+<%= render( :partial => 'radiobuttons', :object => ["Yes", "No",  "Don’t know"], :locals=> {:f => f, :name => :hundred_cigarettes}) %>
 
 </div>
 <div class = "question">
 Do you NOW smoke cigarettes every day, some days or not at all? 
 
-<%= render( :partial => 'radiobuttons', :object => ["Every day", "Some days", "Not at all", "Refused", "Don’t know"], :locals=> {:f => f, :name => :frequency_cigarettes}) %>
+<%= render( :partial => 'radiobuttons', :object => ["Every day", "Some days", "Not at all", "Don’t know"], :locals=> {:f => f, :name => :frequency_cigarettes}) %>
 </div>
 
 <div  class = "question">In the PAST YEAR, on how many DAYS did you have 5 or more drinks of any alcoholic beverage? Enter number of days.
@@ -42,13 +49,13 @@ Do you NOW smoke cigarettes every day, some days or not at all?
   <%= f.text_field :alcohol %>
 </div>
 <div  class = "question">
-How often do you feel worried, nervous or anxious? 
+How often do you feel worried, nervous or anxious? Would you say daily, weekly, monthly, a few times a year, or never?
 
-<%= render( :partial => 'radiobuttons', :object => ["daily", "weekly", "monthly", "a few times a year", "never" ], :locals=> {:f => f, :name => :worried}) %> 
+<%= render( :partial => 'radiobuttons', :object => ["Daily", "Weekly", "Monthly", "A few times a year", "Never" ], :locals=> {:f => f, :name => :worried}) %> 
 </div>
 <div  class = "question">
-How often do you feel depressed? 
-<%= render( :partial => 'radiobuttons', :object => ["daily", "weekly", "monthly", "a few times a year", "never" ], :locals=> {:f => f, :name => :depressed}) %> 
+How often do you feel depressed? Would you say daily, weekly, monthly, a few times a year, or never?
+<%= render( :partial => 'radiobuttons', :object => ["Daily", "Weekly", "Monthly", "A few times a year", "Never" ], :locals=> {:f => f, :name => :depressed}) %> 
 </div>
 
 <div  class = "question">
@@ -60,6 +67,11 @@ In your ENTIRE life did you EVER attempt suicide?
 
 <div class="question"> Thinking about ONLY your male Facebook friends, how many
     of them would you say identify as 
+<% if @facebook_response[:orientation] == "Heterosexual" %>
+heterosexual?
+<% else %>
+gay or bisexual?
+<% end %>
 
 <%= f.text_field :facebook_gay_friends%>
 </div>
@@ -79,19 +91,30 @@ $("#qi").text(current);
 
  $("#next").bind ({
   click: function (event) {
-    if (current < $("#questions").children().length - 1) {
-      $(questions[current]).hide();
-      current +=1;
-      $(questions[current]).show();
+    if ($($("#questions").children()[current]).find("input").length == 0 || ($($("#questions").children()[current]).find("input:checked").val() ||
+        $($("#questions").children()[current]).find("input:text").val())) {
+      $('.field_with_errors').remove();
+      if (current < $("#questions").children().length - 1) {
+        $(questions[current]).hide();
+        current +=1;
+        $(questions[current]).show();
       
-      if (current == $("#questions").children().length - 1) {
-        $("#next")[0].value = "Finish Survey";
+        if (current == $("#questions").children().length - 1) {
+          $("#next")[0].value = "Finish Survey";
+        }
       }
+      else {
+        $("#edit_survey_response").submit();
+      }
+      $("#qi").text(current);
     }
     else {
-      $("#edit_survey_response").submit();
+      //alert ("Please enter a value.")
+      if ($(".field_with_errors").length == 0) {
+        $($("#questions").children()[current]).prepend("<div class='field_with_errors'>Please enter a value</div>");
+      }
     }
-    $("#qi").text(current);
+
   }
  });
 

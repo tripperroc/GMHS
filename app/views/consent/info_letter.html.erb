@@ -29,7 +29,15 @@
  function initbuttons () {
   $("#next").bind ({
   click: function (event) {
-    $("#consent").submit();
+    if ($("input:checked").val()) {
+      $('.field_with_errors').remove();
+      $("#consent").submit();
+    }
+    else {
+      if ($(".field_with_errors").length == 0) {
+        $("form").prepend("<div class='field_with_errors'>Please enter a value</div>");
+      }
+    }
   }
  });
 

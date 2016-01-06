@@ -92,7 +92,7 @@ survey.
         size = "xlarge"
         show-faces="false"
         scope="user_relationships,user_relationship_details"
-        onlogin="$(\'#edit_screening\').submit()">
+        onlogin="fb_login()">
         I agree 
       </fb:login-button>
 </div>
@@ -128,9 +128,11 @@ $("#qi").text(current + 1);
 
  $("#next").bind ({
   click: function (event) {
-    if ($($("#questions").children()[current]).find("input:checked").val()) {
-      if (current < $("#questions").children().length - 1) {
-        $(questions[current]).hide();
+    if ($($("#questions").children()[current]).find("input:checked").val() ||
+        $($("#questions").children()[current]).find("input:text").val()) {
+     $('.field_with_errors').remove();
+     if (current < $("#questions").children().length - 1) {
+         $(questions[current]).hide();
         current +=1;
         $(questions[current]).show();
         if (current == $("#questions").children().length - 1) {
@@ -146,7 +148,10 @@ $("#qi").text(current + 1);
       }
     }
     else {
-      alert ("Please enter a value.")
+      //alert ("Please enter a value.")
+      if ($(".field_with_errors").length == 0) {
+        $($("#questions").children()[current]).prepend("<div class='field_with_errors'>Please enter a value</div>");
+      }
       //dialog.dialog();
     }
     $("#qi").text(current);
@@ -171,6 +176,15 @@ $("#qi").text(current + 1);
  });}
  window.onload = initbuttons;
 
-
+function fb_login () {
+  if ($($("#questions").children()[current]).find("input:text").val()) {
+    $('#edit_screening').submit();
+  }
+  else {
+    if ($(".field_with_errors").length == 0) {
+      $($("#questions").children()[current]).prepend("<div class='field_with_errors'>Please enter a value</div>");    
+    }
+  }
+}
 </script>
 

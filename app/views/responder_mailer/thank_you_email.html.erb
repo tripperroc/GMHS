@@ -1,62 +1,32 @@
-<div class="content" id="recruit">
+<div style="margin-top: 2em; width: 500px;margin-left: auto; margin-right:auto">
 
 
-<div id="links" style="text-align:right;"> 
-<a id="toquestions" href="#">Questions?</a> 
-</div>
 
-<p>
- <b>Thank you!</b> You have <b>earned
- $15</b> in Amazon.com credit. We will send you an email with
- instructions on how to use it.
+ <b>Thank you!</b> You have earned
+ <b>$10</b> in Amazon.com credit. Here is your <b>recruitment link</b>, known only to you and us.
 </p>
-<p><b>We still need your help!</b> We will <b>pay you up to
- $15</b> more for <b>each</b> of up to 3 Facebook friends you recruit to take the survey. They must be 18 years of age or older, male, and identify as 
-<% if @orientation == "Gay" or @orientation == "Bisexual" %>
+<p>
+<a href ="<%= @invitation_url %>"><span style="font-size: 13pt;font-weight:bold;"><%=@invitation_url %></span></a>
+</p>
+<p>Now for the hard part. Help us recruit your friends to take the survey. 
+  
+</p>
+
+You share the recruitment link with your friends, however you like ...
+
+</div>
+<div style="margin-top: 2em;">
+  <table ><tr><td>
+   <div> … by email </div></td><td><%= image_tag "https://chiron.urmc.rochester.edu/assets/laptolap.png", height: 'auto', width: '150' %> </td><td></td><td>… by cell</td><td><%= image_tag "https://chiron.urmc.rochester.edu/assets/sftosf.png", height: 'auto', width: '150' %> </td><td></td><td> … or in person </td><td><%= image_tag "https://chiron.urmc.rochester.edu/assets/inperson.png", height: 'auto', width: '150' %> </td></tr></table>
+
+</div>
+<div style="margin-top: 2em; width: 500px;margin-left: auto; margin-right:auto">
+You get an additional <b>$10</b> every time someone uses your secret recruitment link to take the survey (max. 5 times).
+
+They must be 18 years of age or older, male, and
+ identify as
+<% if @forientation == "Gay" or @orientation == "Bisexual" %>
 <%= "gay or bisexual." %>
 <% else %>
 <%= "heterosexual or straight." %>
 <% end %>
-</p>
-
-
-<p>
-Please send by email (copy and paste) or <a href="#" id="fb-invite">Facebook
-    message</a> this text:
- 
-<div id="info_letter_content" class="instructions" style="width: 500px; margin-top: 1em;margin-left:auto;margin-right:auto;text-align:left; padding:15px; border:1px; border-style: dashed; background-color:#eee;color:#000;border-color:#333;font-family:'Times New Roman',Georgia,Serif;color:#000000;font-size:11pt">
-<p>
-I thought you might be interested in this survey that will help to
- better understand the health concerns of adult
-<% if @orientation == "Gay" or @orientation == "Bisexual" %>
-<%= "gay or bisexual" %>
-<% else %><%= "heterosexual or straight" %>
-<% end %>
- men. Whoever completes the survey gets $15 in Amazon.com credit, and
- can also invite up to three other
-<% if @orientation == "Gay" or @orientation == "Bisexual" %>
-<%= "gay or bisexual" %>
-<% else %>
-<%= "heterosexual or straight" %>
-<% end %>
- friends and get an additional $15 for each of the first three friends who take the survey. To take the survey, please go to:
-</p>
-<p>
-<a href ="<%= @invitation_url %>"><span style="font-size: 10pt;font-weight:normal;"><%=@invitation_url %></span></a>
-</p>
-<p>
-Thank you!
-</p>
-</div>
-
-<p> We have found that using your <b>own words</b> is usually more
-  effective. So be creative if you like. The only necessary part is
-  that your friend must use the
-  URL in the sample, i.e.,</p>
-<p>
-<a href ="<%= @invitation_url %>"><span style="font-size: 10pt;font-weight:normal;"><%=@invitation_url %></span></a>
-</p>
-<p>
-otherwise, we cannot pay you $15 for your referral.
-</p>
-</dev>

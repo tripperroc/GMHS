@@ -122,6 +122,11 @@ ActiveRecord::Schema.define(version: 20150823014659) do
     t.integer  "alcohol"
     t.integer  "facebook_gay_friends"
     t.integer  "screening_id"
+    t.boolean  "white"
+    t.boolean  "black"
+    t.boolean  "native"
+    t.boolean  "asian"
+    t.boolean  "none"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

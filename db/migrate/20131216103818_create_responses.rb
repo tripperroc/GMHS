@@ -18,6 +18,11 @@ class CreateResponses < ActiveRecord::Migration
       t.integer :alcohol
       t.integer :facebook_gay_friends
       t.integer :screening_id
+       t.boolean :white
+       t.boolean :black
+       t.boolean :native
+       t.boolean :asian
+       t.boolean :none
       t.timestamps
     end
   end
